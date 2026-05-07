@@ -1,0 +1,16 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from rmf_building_map_msgs/srv/GetBuildingMap.srv
+// generated code does not contain a copyright notice
+
+#include "rmf_building_map_msgs/msg/BuildingMap.idl"
+
+module rmf_building_map_msgs {
+  module srv {
+    struct GetBuildingMap_Request {
+      uint8 structure_needs_at_least_one_member;
+    };
+    struct GetBuildingMap_Response {
+      rmf_building_map_msgs::msg::BuildingMap building_map;
+    };
+  };
+};

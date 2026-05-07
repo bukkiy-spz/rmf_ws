@@ -1,0 +1,28 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from rmf_scheduler_msgs/srv/ListTriggers.srv
+// generated code does not contain a copyright notice
+
+#include "rmf_scheduler_msgs/msg/Trigger.idl"
+
+module rmf_scheduler_msgs {
+  module srv {
+    @verbatim (language="comment", text=
+      "Get a list of currently registered triggers.")
+    struct ListTriggers_Request {
+      @verbatim (language="comment", text=
+        "unix time in seconds")
+      int64 created_after;
+    };
+    struct ListTriggers_Response {
+      @verbatim (language="comment", text=
+        "Confirmation that the trigger is successfully cancelled.")
+      boolean success;
+
+      @verbatim (language="comment", text=
+        "If success is false, this provides a reason for the failure.")
+      string message;
+
+      sequence<rmf_scheduler_msgs::msg::Trigger> triggers;
+    };
+  };
+};

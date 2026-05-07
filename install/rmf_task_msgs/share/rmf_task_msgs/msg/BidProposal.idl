@@ -1,0 +1,34 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_task_msgs/msg/BidProposal.msg
+// generated code does not contain a copyright notice
+
+#include "builtin_interfaces/msg/Time.idl"
+
+module rmf_task_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "This message is published by a Fleet Adapter in response to a BidNotice" "\n"
+      "message.")
+    struct BidProposal {
+      @verbatim (language="comment", text=
+        "The name of the Fleet Adapter publishing this message")
+      string fleet_name;
+
+      @verbatim (language="comment", text=
+        "The name of the robot in the fleet which will potentially execute the task")
+      string expected_robot_name;
+
+      @verbatim (language="comment", text=
+        "The overall cost of task assignments prior to accommodating the new task")
+      double prev_cost;
+
+      @verbatim (language="comment", text=
+        "The overall cost of task assignments after accommodating the new task")
+      double new_cost;
+
+      @verbatim (language="comment", text=
+        "The estimated finish time of the new task")
+      builtin_interfaces::msg::Time finish_time;
+    };
+  };
+};

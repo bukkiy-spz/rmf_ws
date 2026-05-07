@@ -1,0 +1,11 @@
+
+
+# The identity of the schedule node that provided this registration
+ScheduleIdentity node_id
+
+# The ID given to the registered query. Use this ID when making a query request.
+uint64 query_id
+
+# A string to notify exceptional issues that came up while trying to fulfill the
+# request.
+string error

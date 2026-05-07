@@ -1,0 +1,32 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_task_msgs/msg/Delivery.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_dispenser_msgs/msg/DispenserRequestItem.idl"
+#include "rmf_task_msgs/msg/Behavior.idl"
+
+module rmf_task_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "task_id is intended to be a pseudo-random string generated" "\n"
+      "by the caller which can be used to identify this task as it" "\n"
+      "moves between the queues to completion (or failure).")
+    struct Delivery {
+      string task_id;
+
+      sequence<rmf_dispenser_msgs::msg::DispenserRequestItem> items;
+
+      string pickup_place_name;
+
+      string pickup_dispenser;
+
+      rmf_task_msgs::msg::Behavior pickup_behavior;
+
+      string dropoff_place_name;
+
+      string dropoff_ingestor;
+
+      rmf_task_msgs::msg::Behavior dropoff_behavior;
+    };
+  };
+};

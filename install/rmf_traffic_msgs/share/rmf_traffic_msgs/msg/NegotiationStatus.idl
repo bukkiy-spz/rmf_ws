@@ -1,0 +1,23 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/NegotiationStatus.msg
+// generated code does not contain a copyright notice
+
+#include "builtin_interfaces/msg/Time.idl"
+
+module rmf_traffic_msgs {
+  module msg {
+    struct NegotiationStatus {
+      uint64 conflict_version;
+
+      sequence<uint64> participants;
+
+      @verbatim (language="comment", text=
+        "Time that this negotiation began")
+      builtin_interfaces::msg::Time start_time;
+
+      @verbatim (language="comment", text=
+        "Time that the last response from a participant was seen")
+      builtin_interfaces::msg::Time last_response_time;
+    };
+  };
+};

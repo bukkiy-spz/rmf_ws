@@ -1,0 +1,52 @@
+// generated from rosidl_generator_c/resource/idl__struct.h.em
+// with input from rmf_fleet_msgs:msg/PathRequest.idl
+// generated code does not contain a copyright notice
+
+#ifndef RMF_FLEET_MSGS__MSG__DETAIL__PATH_REQUEST__STRUCT_H_
+#define RMF_FLEET_MSGS__MSG__DETAIL__PATH_REQUEST__STRUCT_H_
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+
+
+// Constants defined in the message
+
+// Include directives for member types
+// Member 'fleet_name'
+// Member 'robot_name'
+// Member 'task_id'
+#include "rosidl_runtime_c/string.h"
+// Member 'path'
+#include "rmf_fleet_msgs/msg/detail/location__struct.h"
+
+/// Struct defined in msg/PathRequest in the package rmf_fleet_msgs.
+typedef struct rmf_fleet_msgs__msg__PathRequest
+{
+  rosidl_runtime_c__String fleet_name;
+  rosidl_runtime_c__String robot_name;
+  rmf_fleet_msgs__msg__Location__Sequence path;
+  /// task_id must be copied into future RobotState messages
+  rosidl_runtime_c__String task_id;
+} rmf_fleet_msgs__msg__PathRequest;
+
+// Struct for a sequence of rmf_fleet_msgs__msg__PathRequest.
+typedef struct rmf_fleet_msgs__msg__PathRequest__Sequence
+{
+  rmf_fleet_msgs__msg__PathRequest * data;
+  /// The number of valid items in data
+  size_t size;
+  /// The number of allocated items in data
+  size_t capacity;
+} rmf_fleet_msgs__msg__PathRequest__Sequence;
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif  // RMF_FLEET_MSGS__MSG__DETAIL__PATH_REQUEST__STRUCT_H_

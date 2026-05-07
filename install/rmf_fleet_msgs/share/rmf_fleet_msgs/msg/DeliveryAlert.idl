@@ -1,0 +1,25 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_fleet_msgs/msg/DeliveryAlert.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_fleet_msgs/msg/DeliveryAlertAction.idl"
+#include "rmf_fleet_msgs/msg/DeliveryAlertCategory.idl"
+#include "rmf_fleet_msgs/msg/DeliveryAlertTier.idl"
+
+module rmf_fleet_msgs {
+  module msg {
+    struct DeliveryAlert {
+      string id;
+
+      rmf_fleet_msgs::msg::DeliveryAlertCategory category;
+
+      rmf_fleet_msgs::msg::DeliveryAlertTier tier;
+
+      string task_id;
+
+      rmf_fleet_msgs::msg::DeliveryAlertAction action;
+
+      string message;
+    };
+  };
+};

@@ -1,0 +1,6 @@
+setup.py
+rmf_obstacle_msgs/__init__.py
+rmf_obstacle_msgs.egg-info/PKG-INFO
+rmf_obstacle_msgs.egg-info/SOURCES.txt
+rmf_obstacle_msgs.egg-info/dependency_links.txt
+rmf_obstacle_msgs.egg-info/top_level.txt

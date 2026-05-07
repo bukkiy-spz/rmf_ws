@@ -1,0 +1,19 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/Participant.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_traffic_msgs/msg/ParticipantDescription.idl"
+
+module rmf_traffic_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "The unique ID for this participant")
+    struct Participant {
+      uint64 id;
+
+      @verbatim (language="comment", text=
+        "Description of this participant (name, shape, etc.)")
+      rmf_traffic_msgs::msg::ParticipantDescription description;
+    };
+  };
+};

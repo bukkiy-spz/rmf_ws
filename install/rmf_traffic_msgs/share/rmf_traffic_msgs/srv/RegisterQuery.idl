@@ -1,0 +1,30 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from rmf_traffic_msgs/srv/RegisterQuery.srv
+// generated code does not contain a copyright notice
+
+#include "rmf_traffic_msgs/msg/ScheduleIdentity.idl"
+#include "rmf_traffic_msgs/msg/ScheduleQuery.idl"
+
+module rmf_traffic_msgs {
+  module srv {
+    struct RegisterQuery_Request {
+      @verbatim (language="comment", text=
+        "The query to be registered")
+      rmf_traffic_msgs::msg::ScheduleQuery query;
+    };
+    struct RegisterQuery_Response {
+      @verbatim (language="comment", text=
+        "The identity of the schedule node that provided this registration")
+      rmf_traffic_msgs::msg::ScheduleIdentity node_id;
+
+      @verbatim (language="comment", text=
+        "The ID given to the registered query. Use this ID when making a query request.")
+      uint64 query_id;
+
+      @verbatim (language="comment", text=
+        "A string to notify exceptional issues that came up while trying to fulfill the" "\n"
+        "request.")
+      string error;
+    };
+  };
+};

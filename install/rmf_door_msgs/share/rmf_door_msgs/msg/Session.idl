@@ -1,0 +1,15 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_door_msgs/msg/Session.msg
+// generated code does not contain a copyright notice
+
+#include "builtin_interfaces/msg/Time.idl"
+
+module rmf_door_msgs {
+  module msg {
+    struct Session {
+      builtin_interfaces::msg::Time request_time;
+
+      string requester_id;
+    };
+  };
+};

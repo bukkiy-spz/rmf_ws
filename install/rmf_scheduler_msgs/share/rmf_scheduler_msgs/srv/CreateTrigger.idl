@@ -1,0 +1,28 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from rmf_scheduler_msgs/srv/CreateTrigger.srv
+// generated code does not contain a copyright notice
+
+#include "rmf_scheduler_msgs/msg/Trigger.idl"
+
+module rmf_scheduler_msgs {
+  module srv {
+    @verbatim (language="comment", text=
+      "Registers a new trigger to be performed at a specific time. Existing trigger with the same" "\n"
+      "name will be replaced.")
+    struct CreateTrigger_Request {
+      @verbatim (language="comment", text=
+        "The following fields are ignored:" "\n"
+        "  - created_at")
+      rmf_scheduler_msgs::msg::Trigger trigger;
+    };
+    struct CreateTrigger_Response {
+      @verbatim (language="comment", text=
+        "Confirmation that the trigger is successfully registered")
+      boolean success;
+
+      @verbatim (language="comment", text=
+        "If success is false, this provides a reason for the failure.")
+      string message;
+    };
+  };
+};

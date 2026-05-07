@@ -1,0 +1,40 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/BlockadeStatus.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_traffic_msgs {
+  module msg {
+    struct BlockadeStatus {
+      @verbatim (language="comment", text=
+        "The Participant ID that this status is for")
+      uint64 participant;
+
+      @verbatim (language="comment", text=
+        "The latest reservation known for this participant")
+      uint64 reservation;
+
+      @verbatim (language="comment", text=
+        "This is true if and only if the moderator has ever received a ready notice" "\n"
+        "from the participant")
+      boolean any_ready;
+
+      @verbatim (language="comment", text=
+        "If any_ready is true, then this is the most recent ready checkpoint that the" "\n"
+        "moderator knows about. If any_ready is false, then this field is meaningless.")
+      uint64 last_ready;
+
+      @verbatim (language="comment", text=
+        "The last checkpoint that the moderator knows of the participant reaching")
+      uint64 last_reached;
+
+      @verbatim (language="comment", text=
+        "The first checkpoint that's currently blockaded for this participant")
+      uint64 assignment_begin;
+
+      @verbatim (language="comment", text=
+        "The last checkpoint that's currently blockaded for this participant")
+      uint64 assignment_end;
+    };
+  };
+};

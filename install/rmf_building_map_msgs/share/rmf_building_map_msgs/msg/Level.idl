@@ -1,0 +1,28 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_building_map_msgs/msg/Level.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_building_map_msgs/msg/AffineImage.idl"
+#include "rmf_building_map_msgs/msg/Door.idl"
+#include "rmf_building_map_msgs/msg/Graph.idl"
+#include "rmf_building_map_msgs/msg/Place.idl"
+
+module rmf_building_map_msgs {
+  module msg {
+    struct Level {
+      string name;
+
+      float elevation;
+
+      sequence<rmf_building_map_msgs::msg::AffineImage> images;
+
+      sequence<rmf_building_map_msgs::msg::Place> places;
+
+      sequence<rmf_building_map_msgs::msg::Door> doors;
+
+      sequence<rmf_building_map_msgs::msg::Graph> nav_graphs;
+
+      rmf_building_map_msgs::msg::Graph wall_graph;
+    };
+  };
+};

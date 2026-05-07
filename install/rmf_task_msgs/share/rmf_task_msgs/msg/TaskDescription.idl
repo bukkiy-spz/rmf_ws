@@ -1,0 +1,39 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_task_msgs/msg/TaskDescription.msg
+// generated code does not contain a copyright notice
+
+#include "builtin_interfaces/msg/Time.idl"
+#include "rmf_task_msgs/msg/Clean.idl"
+#include "rmf_task_msgs/msg/Delivery.idl"
+#include "rmf_task_msgs/msg/Loop.idl"
+#include "rmf_task_msgs/msg/Priority.idl"
+#include "rmf_task_msgs/msg/Station.idl"
+#include "rmf_task_msgs/msg/TaskType.idl"
+
+module rmf_task_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "Desired start time of a task")
+    struct TaskDescription {
+      builtin_interfaces::msg::Time start_time;
+
+      @verbatim (language="comment", text=
+        "Priority of the task")
+      rmf_task_msgs::msg::Priority priority;
+
+      @verbatim (language="comment", text=
+        "Task type")
+      rmf_task_msgs::msg::TaskType task_type;
+
+      @verbatim (language="comment", text=
+        "The corresponding field for the above TaskType should be populated")
+      rmf_task_msgs::msg::Station station;
+
+      rmf_task_msgs::msg::Loop loop;
+
+      rmf_task_msgs::msg::Delivery delivery;
+
+      rmf_task_msgs::msg::Clean clean;
+    };
+  };
+};

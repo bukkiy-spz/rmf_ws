@@ -1,0 +1,12 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/ScheduleChangeCull.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_traffic_msgs {
+  module msg {
+    struct ScheduleChangeCull {
+      int64 time;
+    };
+  };
+};

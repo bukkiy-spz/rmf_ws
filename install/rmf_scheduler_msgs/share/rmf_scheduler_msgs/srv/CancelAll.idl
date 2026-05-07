@@ -1,0 +1,23 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from rmf_scheduler_msgs/srv/CancelAll.srv
+// generated code does not contain a copyright notice
+
+
+module rmf_scheduler_msgs {
+  module srv {
+    @verbatim (language="comment", text=
+      "Cancel all triggers and schedules belonging to a group.")
+    struct CancelAll_Request {
+      string group;
+    };
+    struct CancelAll_Response {
+      @verbatim (language="comment", text=
+        "Confirmation that the schedule is successfully registered")
+      boolean success;
+
+      @verbatim (language="comment", text=
+        "If success is false, this provides a reason for the failure.")
+      string message;
+    };
+  };
+};

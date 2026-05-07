@@ -1,0 +1,30 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_fleet_msgs/msg/Location.msg
+// generated code does not contain a copyright notice
+
+#include "builtin_interfaces/msg/Time.idl"
+
+module rmf_fleet_msgs {
+  module msg {
+    struct Location {
+      builtin_interfaces::msg::Time t;
+
+      float x;
+
+      float y;
+
+      float yaw;
+
+      @default (value=FALSE)
+      boolean obey_approach_speed_limit;
+
+      @verbatim (language="comment", text=
+        "Speed limit of the lane leading to this waypoint in m/s")
+      float approach_speed_limit;
+
+      string level_name;
+
+      uint64 index;
+    };
+  };
+};

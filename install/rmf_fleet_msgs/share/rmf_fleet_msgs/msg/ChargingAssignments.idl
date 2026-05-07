@@ -1,0 +1,15 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_fleet_msgs/msg/ChargingAssignments.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_fleet_msgs/msg/ChargingAssignment.idl"
+
+module rmf_fleet_msgs {
+  module msg {
+    struct ChargingAssignments {
+      string fleet_name;
+
+      sequence<rmf_fleet_msgs::msg::ChargingAssignment> assignments;
+    };
+  };
+};

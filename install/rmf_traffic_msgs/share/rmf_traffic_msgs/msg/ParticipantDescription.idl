@@ -1,0 +1,32 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/ParticipantDescription.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_traffic_msgs/msg/Profile.idl"
+
+module rmf_traffic_msgs {
+  module msg {
+    module ParticipantDescription_Constants {
+      const uint8 RX_INVALID = 0;
+      const uint8 RX_UNRESPONSIVE = 1;
+      const uint8 RX_RESPONSIVE = 2;
+    };
+    struct ParticipantDescription {
+      @verbatim (language="comment", text=
+        "Name of the participant")
+      string name;
+
+      @verbatim (language="comment", text=
+        "Owner of the participant (e.g. fleet name)")
+      string owner;
+
+      @verbatim (language="comment", text=
+        "Whether or not this participant will automatically respond to conflicts")
+      uint8 responsiveness;
+
+      @verbatim (language="comment", text=
+        "The physical profile of this Participant")
+      rmf_traffic_msgs::msg::Profile profile;
+    };
+  };
+};

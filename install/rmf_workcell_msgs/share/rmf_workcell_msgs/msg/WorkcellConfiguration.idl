@@ -1,0 +1,23 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_workcell_msgs/msg/WorkcellConfiguration.msg
+// generated code does not contain a copyright notice
+
+#include "builtin_interfaces/msg/Time.idl"
+#include "rmf_workcell_msgs/msg/Asset.idl"
+#include "rmf_workcell_msgs/msg/Trait.idl"
+
+module rmf_workcell_msgs {
+  module msg {
+    struct WorkcellConfiguration {
+      builtin_interfaces::msg::Time time;
+
+      string guid;
+
+      string type;
+
+      sequence<rmf_workcell_msgs::msg::Asset> assets;
+
+      sequence<rmf_workcell_msgs::msg::Trait> traits;
+    };
+  };
+};

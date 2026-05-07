@@ -1,0 +1,23 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from rmf_task_msgs/srv/GetDispatchStates.srv
+// generated code does not contain a copyright notice
+
+#include "rmf_task_msgs/msg/DispatchStates.idl"
+
+module rmf_task_msgs {
+  module srv {
+    @verbatim (language="comment", text=
+      "Query list of submitted tasks | Get service call")
+    struct GetDispatchStates_Request {
+      @verbatim (language="comment", text=
+        "Input the generated task ID during submission" "\n"
+        "if empty, provide all Submitted Tasks")
+      sequence<string> task_ids;
+    };
+    struct GetDispatchStates_Response {
+      boolean success;
+
+      rmf_task_msgs::msg::DispatchStates states;
+    };
+  };
+};

@@ -1,0 +1,15 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/Circle.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_traffic_msgs {
+  module msg {
+    struct Circle {
+      @verbatim (language="comment", text=
+        "The radius of the circle. The circle will be centered around the origin of its" "\n"
+        "frame of reference.")
+      double radius;
+    };
+  };
+};

@@ -1,0 +1,21 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_site_map_msgs/msg/SiteMap.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_site_map_msgs {
+  module msg {
+    module SiteMap_Constants {
+      const uint32 MAP_DATA_UNDEFINED = 0;
+      const uint32 MAP_DATA_GPKG = 1;
+      const uint32 MAP_DATA_GPKG_GZ = 2;
+      const uint32 MAP_DATA_GEOJSON = 3;
+      const uint32 MAP_DATA_GEOJSON_GZ = 4;
+    };
+    struct SiteMap {
+      uint32 encoding;
+
+      sequence<uint8> data;
+    };
+  };
+};

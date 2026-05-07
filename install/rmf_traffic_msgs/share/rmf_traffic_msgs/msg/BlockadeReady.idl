@@ -1,0 +1,22 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/BlockadeReady.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_traffic_msgs {
+  module msg {
+    struct BlockadeReady {
+      @verbatim (language="comment", text=
+        "The ID of the blockade participant")
+      uint64 participant;
+
+      @verbatim (language="comment", text=
+        "The reservation ID that this update refers to")
+      uint64 reservation;
+
+      @verbatim (language="comment", text=
+        "The checkpoint that is ready to be left")
+      uint64 checkpoint;
+    };
+  };
+};

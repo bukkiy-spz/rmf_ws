@@ -1,0 +1,12 @@
+msg/Asset.idl
+msg/Asset.msg
+msg/Trait.idl
+msg/Trait.msg
+msg/WorkcellConfiguration.idl
+msg/WorkcellConfiguration.msg
+msg/WorkcellRequest.idl
+msg/WorkcellRequest.msg
+msg/WorkcellResult.idl
+msg/WorkcellResult.msg
+msg/WorkcellState.idl
+msg/WorkcellState.msg

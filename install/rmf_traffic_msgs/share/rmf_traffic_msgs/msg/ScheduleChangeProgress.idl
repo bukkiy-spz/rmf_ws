@@ -1,0 +1,23 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/ScheduleChangeProgress.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_traffic_msgs {
+  module msg {
+    struct ScheduleChangeProgress {
+      @verbatim (language="comment", text=
+        "Indicate whether any progress has actually been made. If false, then the" "\n"
+        "rest of the fields can be ignored")
+      boolean has_progress;
+
+      @verbatim (language="comment", text=
+        "The version of the progress within the plan")
+      uint64 version;
+
+      @verbatim (language="comment", text=
+        "The checkpoints in the itinerary that have been reached")
+      sequence<uint64> checkpoints;
+    };
+  };
+};

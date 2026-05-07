@@ -1,0 +1,2 @@
+source;share/nlohmann_json_schema_validator_vendor/environment/ament_prefix_path.sh
+source;share/nlohmann_json_schema_validator_vendor/environment/path.sh

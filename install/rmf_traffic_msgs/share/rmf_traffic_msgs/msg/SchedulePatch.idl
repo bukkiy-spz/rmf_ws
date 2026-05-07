@@ -1,0 +1,27 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/SchedulePatch.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_traffic_msgs/msg/ScheduleChangeCull.idl"
+#include "rmf_traffic_msgs/msg/ScheduleParticipantPatch.idl"
+
+module rmf_traffic_msgs {
+  module msg {
+    struct SchedulePatch {
+      @verbatim (language="comment", text=
+        "The changes to the schedule, grouped into the different participants")
+      sequence<rmf_traffic_msgs::msg::ScheduleParticipantPatch> participants;
+
+      @verbatim (language="comment", text=
+        "TODO(MXG): The database will only ever report 1 cull per update. Consider" "\n"
+        "making this a single field instead of a dynamic array.")
+      sequence<rmf_traffic_msgs::msg::ScheduleChangeCull> cull;
+
+      boolean has_base_version;
+
+      uint64 base_version;
+
+      uint64 latest_version;
+    };
+  };
+};

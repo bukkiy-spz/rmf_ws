@@ -1,0 +1,19 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/NegotiationForfeit.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_traffic_msgs/msg/NegotiationKey.idl"
+
+module rmf_traffic_msgs {
+  module msg {
+    struct NegotiationForfeit {
+      @verbatim (language="comment", text=
+        "The conflict ID that this forfeit is targeted at")
+      uint64 conflict_version;
+
+      @verbatim (language="comment", text=
+        "Forfeit this negotiation table")
+      sequence<rmf_traffic_msgs::msg::NegotiationKey> table;
+    };
+  };
+};

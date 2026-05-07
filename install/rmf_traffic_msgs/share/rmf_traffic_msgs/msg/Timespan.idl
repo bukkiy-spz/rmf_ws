@@ -1,0 +1,23 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/Timespan.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_traffic_msgs {
+  module msg {
+    struct Timespan {
+      sequence<string> maps;
+
+      @verbatim (language="comment", text=
+        "TODO(MXG): Find out if it's more efficient to use a bool+value pair, or to use" "\n"
+        "a dynamic array of the value (which will only ever have 1 or 0 entries)")
+      boolean has_lower_bound;
+
+      int64 lower_bound;
+
+      boolean has_upper_bound;
+
+      int64 upper_bound;
+    };
+  };
+};

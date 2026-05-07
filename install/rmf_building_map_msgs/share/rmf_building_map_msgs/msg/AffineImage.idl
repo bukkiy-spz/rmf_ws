@@ -1,0 +1,24 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_building_map_msgs/msg/AffineImage.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_building_map_msgs {
+  module msg {
+    struct AffineImage {
+      string name;
+
+      float x_offset;
+
+      float y_offset;
+
+      float yaw;
+
+      float scale;
+
+      string encoding;
+
+      sequence<uint8> data;
+    };
+  };
+};

@@ -1,0 +1,24 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/ScheduleQueries.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_traffic_msgs/msg/ScheduleIdentity.idl"
+#include "rmf_traffic_msgs/msg/ScheduleQuery.idl"
+
+module rmf_traffic_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "The version of the schedule node that provided this update")
+    struct ScheduleQueries {
+      rmf_traffic_msgs::msg::ScheduleIdentity node_id;
+
+      @verbatim (language="comment", text=
+        "The list of known queries")
+      sequence<rmf_traffic_msgs::msg::ScheduleQuery> queries;
+
+      @verbatim (language="comment", text=
+        "The list of IDs for those queries")
+      sequence<uint64> query_ids;
+    };
+  };
+};

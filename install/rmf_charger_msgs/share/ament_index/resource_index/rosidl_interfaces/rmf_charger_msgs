@@ -1,0 +1,6 @@
+msg/ChargerCancel.idl
+msg/ChargerCancel.msg
+msg/ChargerRequest.idl
+msg/ChargerRequest.msg
+msg/ChargerState.idl
+msg/ChargerState.msg

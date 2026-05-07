@@ -1,0 +1,23 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_fleet_msgs/msg/SpeedLimitRequest.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_fleet_msgs/msg/SpeedLimitedLane.idl"
+
+module rmf_fleet_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "The name of the fleet")
+    struct SpeedLimitRequest {
+      string fleet_name;
+
+      @verbatim (language="comment", text=
+        "The lanes to impose speed limits upon.")
+      sequence<rmf_fleet_msgs::msg::SpeedLimitedLane> speed_limits;
+
+      @verbatim (language="comment", text=
+        "The indices of lanes to remove speed limits")
+      sequence<uint64> remove_limits;
+    };
+  };
+};

@@ -1,0 +1,17 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/Trajectory.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_traffic_msgs/msg/TrajectoryWaypoint.idl"
+
+module rmf_traffic_msgs {
+  module msg {
+    struct Trajectory {
+      @verbatim (language="comment", text=
+        "A Trajectory is a container of Waypoints. The standard way to interpret the" "\n"
+        "motion of a Trajectory is as a piecewise cubic spline connecting the" "\n"
+        "waypoints.")
+      sequence<rmf_traffic_msgs::msg::TrajectoryWaypoint> waypoints;
+    };
+  };
+};

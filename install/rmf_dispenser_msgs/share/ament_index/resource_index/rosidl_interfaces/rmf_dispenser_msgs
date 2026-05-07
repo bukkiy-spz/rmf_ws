@@ -1,0 +1,8 @@
+msg/DispenserRequest.idl
+msg/DispenserRequest.msg
+msg/DispenserRequestItem.idl
+msg/DispenserRequestItem.msg
+msg/DispenserResult.idl
+msg/DispenserResult.msg
+msg/DispenserState.idl
+msg/DispenserState.msg

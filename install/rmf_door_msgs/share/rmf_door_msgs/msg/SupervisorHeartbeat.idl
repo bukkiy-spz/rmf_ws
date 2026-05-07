@@ -1,0 +1,13 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_door_msgs/msg/SupervisorHeartbeat.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_door_msgs/msg/DoorSessions.idl"
+
+module rmf_door_msgs {
+  module msg {
+    struct SupervisorHeartbeat {
+      sequence<rmf_door_msgs::msg::DoorSessions> all_sessions;
+    };
+  };
+};

@@ -1,0 +1,58 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/NegotiationProposal.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_traffic_msgs/msg/NegotiationKey.idl"
+#include "rmf_traffic_msgs/msg/Route.idl"
+
+module rmf_traffic_msgs {
+  module msg {
+    struct NegotiationProposal {
+      @verbatim (language="comment", text=
+        "The conflict ID that this proposal is targeted at")
+      uint64 conflict_version;
+
+      @verbatim (language="comment", text=
+        "The version number for this proposal within the negotiation")
+      uint64 proposal_version;
+
+      @verbatim (language="comment", text=
+        "The participant ID that this proposal is coming from")
+      uint64 for_participant;
+
+      @verbatim (language="comment", text=
+        "The participant IDs that this proposal is trying to accommodate. As each" "\n"
+        "participant proposes their ideal itinerary, the other participants in the" "\n"
+        "conflict will propose itineraries which accommodate it." "\n"
+        "" "\n"
+        "The order of IDs in this dynamic array have important semantic meaning about" "\n"
+        "which itineraries are being accommodated. For example:" "\n"
+        "" "\n"
+        "[] (empty):  This proposal does not accommodate any other participants. This" "\n"
+        "             is the best possible itinerary for this participant." "\n"
+        "" "\n"
+        "[3]:         This proposal is the best itinerary that can accommodate the" "\n"
+        "             ideal itinerary of participant 3." "\n"
+        "" "\n"
+        "[3, 7]:      This proposal is the best itinerary for this participant that can" "\n"
+        "             accommodate both the ideal itinerary of participant 3 and the" "\n"
+        "             best itinerary of participant 7 that accommodates the ideal" "\n"
+        "             itinerary of participant 3." "\n"
+        "" "\n"
+        "[3, 7, ...]: This proposal is the best itinerary that can accommodate the" "\n"
+        "             ideal itinerary of participant 3 and the best itineraries that" "\n"
+        "             accommodate the best itineraries of the participants that precede" "\n"
+        "             them in the list, recursively.")
+      @unit (value="3")
+      sequence<rmf_traffic_msgs::msg::NegotiationKey> to_accommodate;
+
+      @verbatim (language="comment", text=
+        "The unique ID for the plan that is being proposed")
+      uint64 plan_id;
+
+      @verbatim (language="comment", text=
+        "The itinerary that is being proposed for this participant")
+      sequence<rmf_traffic_msgs::msg::Route> itinerary;
+    };
+  };
+};

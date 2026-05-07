@@ -1,0 +1,28 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_ingestor_msgs/msg/IngestorRequest.msg
+// generated code does not contain a copyright notice
+
+#include "builtin_interfaces/msg/Time.idl"
+#include "rmf_ingestor_msgs/msg/IngestorRequestItem.idl"
+
+module rmf_ingestor_msgs {
+  module msg {
+    struct IngestorRequest {
+      builtin_interfaces::msg::Time time;
+
+      @verbatim (language="comment", text=
+        "A unique ID for this request")
+      string request_guid;
+
+      @verbatim (language="comment", text=
+        "The unique name of the ingestor that this request is aimed at")
+      string target_guid;
+
+      @verbatim (language="comment", text=
+        "below are custom workcell message fields")
+      string transporter_type;
+
+      sequence<rmf_ingestor_msgs::msg::IngestorRequestItem> items;
+    };
+  };
+};

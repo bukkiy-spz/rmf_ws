@@ -1,0 +1,20 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_charger_msgs/msg/ChargerCancel.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_charger_msgs {
+  module msg {
+    struct ChargerCancel {
+      @verbatim (language="comment", text=
+        "the charger that should process this message")
+      string charger_name;
+
+      @verbatim (language="comment", text=
+        "A unique ID for each request. It is advised that you prefix this" "\n"
+        "with the sender's node name. This is used for error tracking" "\n"
+        "later on")
+      string request_id;
+    };
+  };
+};

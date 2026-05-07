@@ -1,0 +1,26 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/ConvexShape.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_traffic_msgs {
+  module msg {
+    module ConvexShape_Constants {
+      @verbatim (language="comment", text=
+        "A 2D box or circle shape reference.")
+      const uint8 NONE = 0;
+      const uint8 BOX = 1;
+      const uint8 CIRCLE = 2;
+    };
+    struct ConvexShape {
+      @verbatim (language="comment", text=
+        "Choose between the BOX and CIRCLE types")
+      uint8 type;
+
+      @verbatim (language="comment", text=
+        "Specify the index of the shape. We support 256 different convex shapes per" "\n"
+        "context.")
+      uint8 index;
+    };
+  };
+};

@@ -1,0 +1,29 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/ItinerarySet.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_traffic_msgs/msg/Route.idl"
+
+module rmf_traffic_msgs {
+  module msg {
+    struct ItinerarySet {
+      @verbatim (language="comment", text=
+        "ID of the schedule participant whose itinerary is being set")
+      uint64 participant;
+
+      @verbatim (language="comment", text=
+        "ID of this plan")
+      uint64 plan;
+
+      @verbatim (language="comment", text=
+        "The new itinerary for this participant")
+      sequence<rmf_traffic_msgs::msg::Route> itinerary;
+
+      @verbatim (language="comment", text=
+        "The storage location for these routes")
+      uint64 storage_base;
+
+      uint64 itinerary_version;
+    };
+  };
+};

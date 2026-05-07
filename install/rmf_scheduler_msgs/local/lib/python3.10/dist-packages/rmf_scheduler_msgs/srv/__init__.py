@@ -1,0 +1,9 @@
+from rmf_scheduler_msgs.srv._cancel_all import CancelAll  # noqa: F401
+from rmf_scheduler_msgs.srv._cancel_schedule import CancelSchedule  # noqa: F401
+from rmf_scheduler_msgs.srv._cancel_trigger import CancelTrigger  # noqa: F401
+from rmf_scheduler_msgs.srv._create_schedule import CreateSchedule  # noqa: F401
+from rmf_scheduler_msgs.srv._create_trigger import CreateTrigger  # noqa: F401
+from rmf_scheduler_msgs.srv._list_schedule_states import ListScheduleStates  # noqa: F401
+from rmf_scheduler_msgs.srv._list_schedules import ListSchedules  # noqa: F401
+from rmf_scheduler_msgs.srv._list_trigger_states import ListTriggerStates  # noqa: F401
+from rmf_scheduler_msgs.srv._list_triggers import ListTriggers  # noqa: F401

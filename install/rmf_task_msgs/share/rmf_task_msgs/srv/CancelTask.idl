@@ -1,0 +1,29 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from rmf_task_msgs/srv/CancelTask.srv
+// generated code does not contain a copyright notice
+
+
+module rmf_task_msgs {
+  module srv {
+    @verbatim (language="comment", text=
+      "Cancel Task | \"Delete\" service call")
+    struct CancelTask_Request {
+      @verbatim (language="comment", text=
+        "Identifier for who is requesting the service")
+      string requester;
+
+      @verbatim (language="comment", text=
+        "generated task ID by dispatcher node")
+      string task_id;
+    };
+    struct CancelTask_Response {
+      @verbatim (language="comment", text=
+        "Confirmation that this service call is processed")
+      boolean success;
+
+      @verbatim (language="comment", text=
+        "This will provide a verbose message regarding task cancellation")
+      string message;
+    };
+  };
+};

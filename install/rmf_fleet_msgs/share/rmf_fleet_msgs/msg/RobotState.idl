@@ -1,0 +1,34 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_fleet_msgs/msg/RobotState.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_fleet_msgs/msg/Location.idl"
+#include "rmf_fleet_msgs/msg/RobotMode.idl"
+
+module rmf_fleet_msgs {
+  module msg {
+    struct RobotState {
+      string name;
+
+      string model;
+
+      @verbatim (language="comment", text=
+        "task_id is copied in from the most recent Request message," "\n"
+        "such as ModeRequest, DestinationRequest, or PathRequest")
+      string task_id;
+
+      @verbatim (language="comment", text=
+        "The sequence number of this message. Every new message should increment the" "\n"
+        "sequence number by 1.")
+      uint64 seq;
+
+      rmf_fleet_msgs::msg::RobotMode mode;
+
+      float battery_percent;
+
+      rmf_fleet_msgs::msg::Location location;
+
+      sequence<rmf_fleet_msgs::msg::Location> path;
+    };
+  };
+};

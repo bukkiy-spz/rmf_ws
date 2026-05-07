@@ -1,0 +1,28 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_task_msgs/msg/BidNotice.msg
+// generated code does not contain a copyright notice
+
+#include "builtin_interfaces/msg/Duration.idl"
+
+module rmf_task_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "This message is published by the Task Dispatcher node to notify all" "\n"
+      "Fleet Adapters to participate in a bidding process for a new task." "\n"
+      "Fleet Adapters may then submit a BidProposal message with their best proposal" "\n"
+      "to accommodate the new task.")
+    struct BidNotice {
+      @verbatim (language="comment", text=
+        "Details of the task request")
+      string request;
+
+      @verbatim (language="comment", text=
+        "The ID for this request")
+      string task_id;
+
+      @verbatim (language="comment", text=
+        "Duration for which the bidding is open")
+      builtin_interfaces::msg::Duration time_window;
+    };
+  };
+};

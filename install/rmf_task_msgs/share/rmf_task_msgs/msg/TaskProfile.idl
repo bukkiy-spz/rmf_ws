@@ -1,0 +1,24 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_task_msgs/msg/TaskProfile.msg
+// generated code does not contain a copyright notice
+
+#include "builtin_interfaces/msg/Time.idl"
+#include "rmf_task_msgs/msg/TaskDescription.idl"
+
+module rmf_task_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "Unique ID assigned to this task")
+    struct TaskProfile {
+      string task_id;
+
+      @verbatim (language="comment", text=
+        "Task submission time")
+      builtin_interfaces::msg::Time submission_time;
+
+      @verbatim (language="comment", text=
+        "Details of the task")
+      rmf_task_msgs::msg::TaskDescription description;
+    };
+  };
+};

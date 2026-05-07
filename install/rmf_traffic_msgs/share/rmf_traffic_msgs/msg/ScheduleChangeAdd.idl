@@ -1,0 +1,19 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/ScheduleChangeAdd.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_traffic_msgs/msg/ScheduleChangeAddItem.idl"
+
+module rmf_traffic_msgs {
+  module msg {
+    struct ScheduleChangeAdd {
+      @verbatim (language="comment", text=
+        "The Plan ID for the new routes")
+      uint64 plan_id;
+
+      @verbatim (language="comment", text=
+        "The new route items to add")
+      sequence<rmf_traffic_msgs::msg::ScheduleChangeAddItem> items;
+    };
+  };
+};

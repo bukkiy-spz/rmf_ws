@@ -1,0 +1,23 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/BlockadeCheckpoint.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_traffic_msgs {
+  module msg {
+    typedef double double__2[2];
+    struct BlockadeCheckpoint {
+      @verbatim (language="comment", text=
+        "The position of the checkpoint")
+      double__2 position;
+
+      @verbatim (language="comment", text=
+        "The name of the map that the checkpoint is on")
+      string map_name;
+
+      @verbatim (language="comment", text=
+        "Whether or not the participant can hold at this checkpoint")
+      boolean can_hold;
+    };
+  };
+};

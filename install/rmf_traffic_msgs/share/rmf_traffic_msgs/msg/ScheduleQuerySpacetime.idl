@@ -1,0 +1,33 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/ScheduleQuerySpacetime.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_traffic_msgs/msg/Region.idl"
+#include "rmf_traffic_msgs/msg/ShapeContext.idl"
+#include "rmf_traffic_msgs/msg/Timespan.idl"
+
+module rmf_traffic_msgs {
+  module msg {
+    module ScheduleQuerySpacetime_Constants {
+      const uint16 ALL = 1;
+      const uint16 REGIONS = 2;
+      const uint16 TIMESPAN = 3;
+    };
+    struct ScheduleQuerySpacetime {
+      uint16 type;
+
+      @verbatim (language="comment", text=
+        "=====================" "\n"
+        "===== REGIONS =====" "\n"
+        "If REGIONS mode is chosen, this will contain the regions to query")
+      sequence<rmf_traffic_msgs::msg::Region> regions;
+
+      rmf_traffic_msgs::msg::ShapeContext shape_context;
+
+      @verbatim (language="comment", text=
+        "=====================" "\n"
+        "===== TIMESPAN ======")
+      rmf_traffic_msgs::msg::Timespan timespan;
+    };
+  };
+};

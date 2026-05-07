@@ -1,0 +1,13 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_task_msgs/msg/Tasks.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_task_msgs/msg/TaskSummary.idl"
+
+module rmf_task_msgs {
+  module msg {
+    struct Tasks {
+      sequence<rmf_task_msgs::msg::TaskSummary> tasks;
+    };
+  };
+};

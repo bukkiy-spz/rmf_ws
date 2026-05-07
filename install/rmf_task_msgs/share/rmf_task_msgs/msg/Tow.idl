@@ -1,0 +1,28 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_task_msgs/msg/Tow.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_task_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "task_id is intended to be a pseudo-random string generated" "\n"
+      "by the caller which can be used to identify this task as it" "\n"
+      "moves between the queues to completion (or failure).")
+    struct Tow {
+      string task_id;
+
+      string object_type;
+
+      boolean is_object_id_known;
+
+      string object_id;
+
+      string pickup_place_name;
+
+      boolean is_dropoff_place_known;
+
+      string dropoff_place_name;
+    };
+  };
+};

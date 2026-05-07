@@ -1,0 +1,60 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_building_map_msgs/msg/Door.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_building_map_msgs {
+  module msg {
+    module Door_Constants {
+      const uint8 DOOR_TYPE_UNDEFINED = 0;
+      const uint8 DOOR_TYPE_SINGLE_SLIDING = 1;
+      const uint8 DOOR_TYPE_DOUBLE_SLIDING = 2;
+      const uint8 DOOR_TYPE_SINGLE_TELESCOPE = 3;
+      const uint8 DOOR_TYPE_DOUBLE_TELESCOPE = 4;
+      const uint8 DOOR_TYPE_SINGLE_SWING = 5;
+      const uint8 DOOR_TYPE_DOUBLE_SWING = 6;
+    };
+    struct Door {
+      string name;
+
+      @verbatim (language="comment", text=
+        "CONVENTIONS" "\n"
+        "===========" "\n"
+        "single hinge doors:" "\n"
+        "  * hinge is located at (v1_x, v1_y)" "\n"
+        "  * door extends till (v2_x, v2_y)" "\n"
+        "  * motion_range = door swing range in DEGREES" "\n"
+        "  * there are two possible motions: clockwise and anti-clockwise" "\n"
+        "    selected by the motion_direction parameter, which is +1 or -1" "\n"
+        "" "\n"
+        "double hinge doors:" "\n"
+        "  * hinges are located at both (v1_x, v1_y) and (v2_x, v2_y)" "\n"
+        "  * motion range = door swing ranges in DEGREES (assume symmetric)" "\n"
+        "  * same motion-direction selection as single hinge" "\n"
+        "" "\n"
+        "single sliding doors:" "\n"
+        "  * the door slides from (v2_x, v2_y) towards (v1_x, v1_y)" "\n"
+        "  * range of motion is entire distance from v2->v1. No need to specify." "\n"
+        "" "\n"
+        "double sliding doors:" "\n"
+        "  * door panels slide from the centerpoint of v1<->v2 towards v1 and v2" "\n"
+        "" "\n"
+        "single/double telescoping doors:" "\n"
+        "  * common in elevators; same parameters as sliding doors; they just" "\n"
+        "    open/close faster and take up less space inside the wall.")
+      float v1_x;
+
+      float v1_y;
+
+      float v2_x;
+
+      float v2_y;
+
+      uint8 door_type;
+
+      float motion_range;
+
+      int32 motion_direction;
+    };
+  };
+};

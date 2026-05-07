@@ -1,0 +1,22 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from rmf_traffic_msgs/srv/UnregisterParticipant.srv
+// generated code does not contain a copyright notice
+
+
+module rmf_traffic_msgs {
+  module srv {
+    struct UnregisterParticipant_Request {
+      uint64 participant_id;
+    };
+    struct UnregisterParticipant_Response {
+      @verbatim (language="comment", text=
+        "Confirmation that the participant was unregistered")
+      boolean confirmation;
+
+      @verbatim (language="comment", text=
+        "A description of any errors that were encountered, such as the participant_id" "\n"
+        "being unknown")
+      string error;
+    };
+  };
+};

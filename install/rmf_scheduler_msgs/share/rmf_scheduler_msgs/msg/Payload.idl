@@ -1,0 +1,25 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_scheduler_msgs/msg/Payload.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_scheduler_msgs {
+  module msg {
+    module Payload_Constants {
+      const uint8 PAYLOAD_TYPE_SERIALIZED_MESSAGE = 1;
+    };
+    @verbatim (language="comment", text=
+      "Denotes the type of payload")
+    struct Payload {
+      uint8 type;
+
+      string topic;
+
+      string message_type;
+
+      @verbatim (language="comment", text=
+        "max 2mb")
+      sequence<uint8, 2097152> data;
+    };
+  };
+};

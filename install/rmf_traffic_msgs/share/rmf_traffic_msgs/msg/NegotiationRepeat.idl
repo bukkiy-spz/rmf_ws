@@ -1,0 +1,19 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/NegotiationRepeat.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_traffic_msgs {
+  module msg {
+    struct NegotiationRepeat {
+      @verbatim (language="comment", text=
+        "Repeat conflict information related to this version")
+      uint64 conflict_version;
+
+      @verbatim (language="comment", text=
+        "Repeat conflict information related to this table. If this is empty, then" "\n"
+        "only the initial NegotiationNotice will be repeated.")
+      sequence<uint64> table;
+    };
+  };
+};

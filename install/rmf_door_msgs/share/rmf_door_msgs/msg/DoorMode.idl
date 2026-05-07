@@ -1,0 +1,25 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_door_msgs/msg/DoorMode.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_door_msgs {
+  module msg {
+    module DoorMode_Constants {
+      @verbatim (language="comment", text=
+        "\"value\" must be one of the following enumerations:")
+      const uint32 MODE_CLOSED = 0;
+      const uint32 MODE_MOVING = 1;
+      const uint32 MODE_OPEN = 2;
+      const uint32 MODE_OFFLINE = 3;
+      const uint32 MODE_UNKNOWN = 4;
+    };
+    @verbatim (language="comment", text=
+      "The DoorMode message captures the \"mode\" of an automatic door controller." "\n"
+      "Most door controllers default to running in \"closed\" mode, and transition" "\n"
+      "through some sort of \"moving\" mode until reaching the \"open\" mode.")
+    struct DoorMode {
+      uint32 value;
+    };
+  };
+};

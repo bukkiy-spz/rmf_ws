@@ -1,0 +1,216 @@
+# generated from rosidl_generator_py/resource/_idl.py.em
+# with input from rmf_scheduler_msgs:msg/Payload.idl
+# generated code does not contain a copyright notice
+
+
+# Import statements for member types
+
+# Member 'data'
+import array  # noqa: E402, I100
+
+import builtins  # noqa: E402, I100
+
+import rosidl_parser.definition  # noqa: E402, I100
+
+
+class Metaclass_Payload(type):
+    """Metaclass of message 'Payload'."""
+
+    _CREATE_ROS_MESSAGE = None
+    _CONVERT_FROM_PY = None
+    _CONVERT_TO_PY = None
+    _DESTROY_ROS_MESSAGE = None
+    _TYPE_SUPPORT = None
+
+    __constants = {
+        'PAYLOAD_TYPE_SERIALIZED_MESSAGE': 1,
+    }
+
+    @classmethod
+    def __import_type_support__(cls):
+        try:
+            from rosidl_generator_py import import_type_support
+            module = import_type_support('rmf_scheduler_msgs')
+        except ImportError:
+            import logging
+            import traceback
+            logger = logging.getLogger(
+                'rmf_scheduler_msgs.msg.Payload')
+            logger.debug(
+                'Failed to import needed modules for type support:\n' +
+                traceback.format_exc())
+        else:
+            cls._CREATE_ROS_MESSAGE = module.create_ros_message_msg__msg__payload
+            cls._CONVERT_FROM_PY = module.convert_from_py_msg__msg__payload
+            cls._CONVERT_TO_PY = module.convert_to_py_msg__msg__payload
+            cls._TYPE_SUPPORT = module.type_support_msg__msg__payload
+            cls._DESTROY_ROS_MESSAGE = module.destroy_ros_message_msg__msg__payload
+
+    @classmethod
+    def __prepare__(cls, name, bases, **kwargs):
+        # list constant names here so that they appear in the help text of
+        # the message class under "Data and other attributes defined here:"
+        # as well as populate each message instance
+        return {
+            'PAYLOAD_TYPE_SERIALIZED_MESSAGE': cls.__constants['PAYLOAD_TYPE_SERIALIZED_MESSAGE'],
+        }
+
+    @property
+    def PAYLOAD_TYPE_SERIALIZED_MESSAGE(self):
+        """Message constant 'PAYLOAD_TYPE_SERIALIZED_MESSAGE'."""
+        return Metaclass_Payload.__constants['PAYLOAD_TYPE_SERIALIZED_MESSAGE']
+
+
+class Payload(metaclass=Metaclass_Payload):
+    """
+    Message class 'Payload'.
+
+    Constants:
+      PAYLOAD_TYPE_SERIALIZED_MESSAGE
+    """
+
+    __slots__ = [
+        '_type',
+        '_topic',
+        '_message_type',
+        '_data',
+    ]
+
+    _fields_and_field_types = {
+        'type': 'uint8',
+        'topic': 'string',
+        'message_type': 'string',
+        'data': 'sequence<uint8, 2097152>',
+    }
+
+    SLOT_TYPES = (
+        rosidl_parser.definition.BasicType('uint8'),  # noqa: E501
+        rosidl_parser.definition.UnboundedString(),  # noqa: E501
+        rosidl_parser.definition.UnboundedString(),  # noqa: E501
+        rosidl_parser.definition.BoundedSequence(rosidl_parser.definition.BasicType('uint8'), 2097152),  # noqa: E501
+    )
+
+    def __init__(self, **kwargs):
+        assert all('_' + key in self.__slots__ for key in kwargs.keys()), \
+            'Invalid arguments passed to constructor: %s' % \
+            ', '.join(sorted(k for k in kwargs.keys() if '_' + k not in self.__slots__))
+        self.type = kwargs.get('type', int())
+        self.topic = kwargs.get('topic', str())
+        self.message_type = kwargs.get('message_type', str())
+        self.data = array.array('B', kwargs.get('data', []))
+
+    def __repr__(self):
+        typename = self.__class__.__module__.split('.')
+        typename.pop()
+        typename.append(self.__class__.__name__)
+        args = []
+        for s, t in zip(self.__slots__, self.SLOT_TYPES):
+            field = getattr(self, s)
+            fieldstr = repr(field)
+            # We use Python array type for fields that can be directly stored
+            # in them, and "normal" sequences for everything else.  If it is
+            # a type that we store in an array, strip off the 'array' portion.
+            if (
+                isinstance(t, rosidl_parser.definition.AbstractSequence) and
+                isinstance(t.value_type, rosidl_parser.definition.BasicType) and
+                t.value_type.typename in ['float', 'double', 'int8', 'uint8', 'int16', 'uint16', 'int32', 'uint32', 'int64', 'uint64']
+            ):
+                if len(field) == 0:
+                    fieldstr = '[]'
+                else:
+                    assert fieldstr.startswith('array(')
+                    prefix = "array('X', "
+                    suffix = ')'
+                    fieldstr = fieldstr[len(prefix):-len(suffix)]
+            args.append(s[1:] + '=' + fieldstr)
+        return '%s(%s)' % ('.'.join(typename), ', '.join(args))
+
+    def __eq__(self, other):
+        if not isinstance(other, self.__class__):
+            return False
+        if self.type != other.type:
+            return False
+        if self.topic != other.topic:
+            return False
+        if self.message_type != other.message_type:
+            return False
+        if self.data != other.data:
+            return False
+        return True
+
+    @classmethod
+    def get_fields_and_field_types(cls):
+        from copy import copy
+        return copy(cls._fields_and_field_types)
+
+    @builtins.property  # noqa: A003
+    def type(self):  # noqa: A003
+        """Message field 'type'."""
+        return self._type
+
+    @type.setter  # noqa: A003
+    def type(self, value):  # noqa: A003
+        if __debug__:
+            assert \
+                isinstance(value, int), \
+                "The 'type' field must be of type 'int'"
+            assert value >= 0 and value < 256, \
+                "The 'type' field must be an unsigned integer in [0, 255]"
+        self._type = value
+
+    @builtins.property
+    def topic(self):
+        """Message field 'topic'."""
+        return self._topic
+
+    @topic.setter
+    def topic(self, value):
+        if __debug__:
+            assert \
+                isinstance(value, str), \
+                "The 'topic' field must be of type 'str'"
+        self._topic = value
+
+    @builtins.property
+    def message_type(self):
+        """Message field 'message_type'."""
+        return self._message_type
+
+    @message_type.setter
+    def message_type(self, value):
+        if __debug__:
+            assert \
+                isinstance(value, str), \
+                "The 'message_type' field must be of type 'str'"
+        self._message_type = value
+
+    @builtins.property
+    def data(self):
+        """Message field 'data'."""
+        return self._data
+
+    @data.setter
+    def data(self, value):
+        if isinstance(value, array.array):
+            assert value.typecode == 'B', \
+                "The 'data' array.array() must have the type code of 'B'"
+            assert len(value) <= 2097152, \
+                "The 'data' array.array() must have a size <= 2097152"
+            self._data = value
+            return
+        if __debug__:
+            from collections.abc import Sequence
+            from collections.abc import Set
+            from collections import UserList
+            from collections import UserString
+            assert \
+                ((isinstance(value, Sequence) or
+                  isinstance(value, Set) or
+                  isinstance(value, UserList)) and
+                 not isinstance(value, str) and
+                 not isinstance(value, UserString) and
+                 len(value) <= 2097152 and
+                 all(isinstance(v, int) for v in value) and
+                 all(val >= 0 and val < 256 for val in value)), \
+                "The 'data' field must be a set or sequence with length <= 2097152 and each value of type 'int' and each unsigned integer in [0, 255]"
+        self._data = array.array('B', value)

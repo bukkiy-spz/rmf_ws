@@ -1,0 +1,33 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_scheduler_msgs/msg/ScheduleState.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_scheduler_msgs {
+  module msg {
+    module ScheduleState_Constants {
+      const int8 CREATED = 1;
+      const int8 STARTED = 2;
+      const int8 FINISHED = 3;
+      const int8 CANCELLED = 4;
+      const int8 FAILED = -1;
+    };
+    struct ScheduleState {
+      string name;
+
+      @verbatim (language="comment", text=
+        "unix time in seconds")
+      int64 last_modified;
+
+      @verbatim (language="comment", text=
+        "unix time in seconds")
+      int64 last_ran;
+
+      @verbatim (language="comment", text=
+        "unix time in seconds")
+      int64 next_run;
+
+      int8 status;
+    };
+  };
+};

@@ -1,0 +1,23 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_fleet_msgs/msg/LaneStates.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_fleet_msgs/msg/SpeedLimitedLane.idl"
+
+module rmf_fleet_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "The name of the fleet with closed or speed limited lanes")
+    struct LaneStates {
+      string fleet_name;
+
+      @verbatim (language="comment", text=
+        "The indices of the lanes that are currently closed")
+      sequence<uint64> closed_lanes;
+
+      @verbatim (language="comment", text=
+        "Lanes that have speed limits")
+      sequence<rmf_fleet_msgs::msg::SpeedLimitedLane> speed_limits;
+    };
+  };
+};

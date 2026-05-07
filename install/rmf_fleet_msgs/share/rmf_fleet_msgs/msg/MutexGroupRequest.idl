@@ -1,0 +1,43 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_fleet_msgs/msg/MutexGroupRequest.msg
+// generated code does not contain a copyright notice
+
+#include "builtin_interfaces/msg/Time.idl"
+
+module rmf_fleet_msgs {
+  module msg {
+    module MutexGroupRequest_Constants {
+      @verbatim (language="comment", text=
+        "Request to release the mutex group from this claimer")
+      const uint32 MODE_RELEASE = 0;
+      @verbatim (language="comment", text=
+        "Request to lock the mutex group for this claimer")
+      const uint32 MODE_LOCK = 1;
+    };
+    @verbatim (language="comment", text=
+      "This message is used to attempt to claim a mutex group. It should be sent" "\n"
+      "periodically for the entire duration that the claimer needs the mutex because" "\n"
+      "mutex groups have a limited-time leasing period that will timeout if a request" "\n"
+      "heartbeat is not received in some amount of time.")
+    struct MutexGroupRequest {
+      @verbatim (language="comment", text=
+        "Name of the mutex group that is being claimed")
+      string group;
+
+      @verbatim (language="comment", text=
+        "Name of the agent that is trying to claim the mutex group.")
+      uint64 claimant;
+
+      @verbatim (language="comment", text=
+        "Time stamp of when the claim request began. The same time stamp should be used" "\n"
+        "for all subsequent heartbeat messages related to this claim. If the claim time" "\n"
+        "changes then this claim will be treated a new claim and may be deprioritized." "\n"
+        "Earlier claims have priority over later claims.")
+      builtin_interfaces::msg::Time claim_time;
+
+      @verbatim (language="comment", text=
+        "What kind of request is this?")
+      uint32 mode;
+    };
+  };
+};

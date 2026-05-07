@@ -1,0 +1,22 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_fleet_msgs/msg/BeaconState.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_fleet_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "This message defines data from a robot beacon")
+    struct BeaconState {
+      string id;
+
+      boolean online;
+
+      string category;
+
+      boolean activated;
+
+      string level;
+    };
+  };
+};

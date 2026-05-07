@@ -1,0 +1,25 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_fleet_msgs/msg/MutexGroupManualRelease.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_fleet_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "This message allows operators to manually request that a robot release one or" "\n"
+      "more mutex groups that it is currently holding.")
+    struct MutexGroupManualRelease {
+      @verbatim (language="comment", text=
+        "Name of the mutex groups to release")
+      sequence<string> release_mutex_groups;
+
+      @verbatim (language="comment", text=
+        "The name of the fleet that the robot belongs to")
+      string fleet;
+
+      @verbatim (language="comment", text=
+        "The name of the robot that needs to release the mutex groups")
+      string robot;
+    };
+  };
+};

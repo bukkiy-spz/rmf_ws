@@ -1,0 +1,25 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from rmf_fleet_msgs/srv/LiftClearance.srv
+// generated code does not contain a copyright notice
+
+
+module rmf_fleet_msgs {
+  module srv {
+    struct LiftClearance_Request {
+      @verbatim (language="comment", text=
+        "Name of the robot that wants to enter a lift")
+      string robot_name;
+
+      @verbatim (language="comment", text=
+        "Name of the lift that the robot wants to enter")
+      string lift_name;
+    };
+    module LiftClearance_Response_Constants {
+      const uint32 DECISION_CLEAR = 1;
+      const uint32 DECISION_CROWDED = 2;
+    };
+    struct LiftClearance_Response {
+      uint32 decision;
+    };
+  };
+};

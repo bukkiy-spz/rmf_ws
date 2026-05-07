@@ -1,0 +1,43 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_lift_msgs/msg/LiftRequest.msg
+// generated code does not contain a copyright notice
+
+#include "builtin_interfaces/msg/Time.idl"
+
+module rmf_lift_msgs {
+  module msg {
+    module LiftRequest_Constants {
+      const uint8 REQUEST_END_SESSION = 0;
+      const uint8 REQUEST_AGV_MODE = 1;
+      const uint8 REQUEST_HUMAN_MODE = 2;
+      const uint8 DOOR_CLOSED = 0;
+      const uint8 DOOR_OPEN = 2;
+    };
+    struct LiftRequest {
+      string lift_name;
+
+      builtin_interfaces::msg::Time request_time;
+
+      @verbatim (language="comment", text=
+        "session_id should be unique at least between different requesters." "\n"
+        "For example, session_id could be the requester's node name.")
+      string session_id;
+
+      @verbatim (language="comment", text=
+        "AGV mode means that the doors are always open when the lift is stopped" "\n"
+        "Human mode means that LiftDoorRequest messages must be used to open/close" "\n"
+        "the doors explicitly, since they may \"time out\" and close automatically.")
+      uint8 request_type;
+
+      @verbatim (language="comment", text=
+        "The destination_floor must be one of the values returned in a LiftState.")
+      string destination_floor;
+
+      @verbatim (language="comment", text=
+        "Explicit door requests are necessary in \"human\" mode to open/close doors." "\n"
+        "Door requests are not necessary in \"AGV\" mode, when the doors are always" "\n"
+        "held open when the lift cabin is stopped.")
+      uint8 door_state;
+    };
+  };
+};

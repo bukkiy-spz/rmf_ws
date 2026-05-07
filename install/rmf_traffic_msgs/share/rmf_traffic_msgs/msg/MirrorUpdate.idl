@@ -1,0 +1,29 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/MirrorUpdate.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_traffic_msgs/msg/ScheduleIdentity.idl"
+#include "rmf_traffic_msgs/msg/SchedulePatch.idl"
+
+module rmf_traffic_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "The version of the schedule node that provided this update")
+    struct MirrorUpdate {
+      rmf_traffic_msgs::msg::ScheduleIdentity node_id;
+
+      @verbatim (language="comment", text=
+        "The version of the database this update provides")
+      uint64 database_version;
+
+      @verbatim (language="comment", text=
+        "The patch for the query")
+      rmf_traffic_msgs::msg::SchedulePatch patch;
+
+      @verbatim (language="comment", text=
+        "True if this update is meant to remedy a mirror that has fallen" "\n"
+        "out of sync")
+      boolean is_remedial_update;
+    };
+  };
+};

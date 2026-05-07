@@ -1,0 +1,21 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_task_msgs/msg/DispatchStates.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_task_msgs/msg/DispatchState.idl"
+
+module rmf_task_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "States of tasks that are currently in the process of being dispatched")
+    struct DispatchStates {
+      sequence<rmf_task_msgs::msg::DispatchState> active;
+
+      @verbatim (language="comment", text=
+        "States of tasks that have recently finished being dispatched. This may mean" "\n"
+        "the task was assigned or it may mean it failed to be dispatched or was" "\n"
+        "canceled before the dispatch took place.")
+      sequence<rmf_task_msgs::msg::DispatchState> finished;
+    };
+  };
+};

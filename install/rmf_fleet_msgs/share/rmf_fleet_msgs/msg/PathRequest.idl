@@ -1,0 +1,21 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_fleet_msgs/msg/PathRequest.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_fleet_msgs/msg/Location.idl"
+
+module rmf_fleet_msgs {
+  module msg {
+    struct PathRequest {
+      string fleet_name;
+
+      string robot_name;
+
+      sequence<rmf_fleet_msgs::msg::Location> path;
+
+      @verbatim (language="comment", text=
+        "task_id must be copied into future RobotState messages")
+      string task_id;
+    };
+  };
+};

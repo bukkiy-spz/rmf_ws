@@ -1,0 +1,27 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_task_msgs/msg/BidResponse.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_task_msgs/msg/BidProposal.idl"
+
+module rmf_task_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "ID of the task that is being bid on")
+    struct BidResponse {
+      string task_id;
+
+      @verbatim (language="comment", text=
+        "True if this response contains a proposal")
+      boolean has_proposal;
+
+      @verbatim (language="comment", text=
+        "The proposal of this response, if has_proposal is true")
+      rmf_task_msgs::msg::BidProposal proposal;
+
+      @verbatim (language="comment", text=
+        "Any errors related to this bid")
+      sequence<string> errors;
+    };
+  };
+};

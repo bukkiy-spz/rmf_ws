@@ -1,0 +1,27 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_task_msgs/msg/DispatchState.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_task_msgs/msg/Assignment.idl"
+
+module rmf_task_msgs {
+  module msg {
+    module DispatchState_Constants {
+      const uint8 STATUS_UNINITIALIZED = 0;
+      const uint8 STATUS_QUEUED = 1;
+      const uint8 STATUS_SELECTED = 2;
+      const uint8 STATUS_DISPATCHED = 3;
+      const uint8 STATUS_FAILED_TO_ASSIGN = 4;
+      const uint8 STATUS_CANCELED_IN_FLIGHT = 5;
+    };
+    struct DispatchState {
+      string task_id;
+
+      int8 status;
+
+      rmf_task_msgs::msg::Assignment assignment;
+
+      sequence<string> errors;
+    };
+  };
+};

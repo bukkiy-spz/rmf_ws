@@ -1,0 +1,21 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_building_map_msgs/msg/Graph.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_building_map_msgs/msg/GraphEdge.idl"
+#include "rmf_building_map_msgs/msg/GraphNode.idl"
+#include "rmf_building_map_msgs/msg/Param.idl"
+
+module rmf_building_map_msgs {
+  module msg {
+    struct Graph {
+      string name;
+
+      sequence<rmf_building_map_msgs::msg::GraphNode> vertices;
+
+      sequence<rmf_building_map_msgs::msg::GraphEdge> edges;
+
+      sequence<rmf_building_map_msgs::msg::Param> params;
+    };
+  };
+};

@@ -1,0 +1,29 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_building_map_msgs/msg/Param.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_building_map_msgs {
+  module msg {
+    module Param_Constants {
+      const uint32 TYPE_UNDEFINED = 0;
+      const uint32 TYPE_STRING = 1;
+      const uint32 TYPE_INT = 2;
+      const uint32 TYPE_DOUBLE = 3;
+      const uint32 TYPE_BOOL = 4;
+    };
+    struct Param {
+      string name;
+
+      uint32 type;
+
+      int32 value_int;
+
+      float value_float;
+
+      string value_string;
+
+      boolean value_bool;
+    };
+  };
+};

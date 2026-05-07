@@ -1,0 +1,19 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/ScheduleQueryParticipants.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_traffic_msgs {
+  module msg {
+    module ScheduleQueryParticipants_Constants {
+      const uint16 ALL = 1;
+      const uint16 INCLUDE = 2;
+      const uint16 EXCLUDE = 3;
+    };
+    struct ScheduleQueryParticipants {
+      uint16 type;
+
+      sequence<uint64> ids;
+    };
+  };
+};

@@ -1,0 +1,37 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from rmf_traffic_msgs/srv/RegisterParticipant.srv
+// generated code does not contain a copyright notice
+
+#include "rmf_traffic_msgs/msg/ParticipantDescription.idl"
+
+module rmf_traffic_msgs {
+  module srv {
+    struct RegisterParticipant_Request {
+      @verbatim (language="comment", text=
+        "The description of the participant that is being registered")
+      rmf_traffic_msgs::msg::ParticipantDescription description;
+    };
+    struct RegisterParticipant_Response {
+      @verbatim (language="comment", text=
+        "The ID given to the registered participant")
+      uint64 participant_id;
+
+      @verbatim (language="comment", text=
+        "The last itinerary version that this participant had")
+      uint64 last_itinerary_version;
+
+      @verbatim (language="comment", text=
+        "The last Route ID that this participant had")
+      uint64 last_plan_id;
+
+      @verbatim (language="comment", text=
+        "The next storage base for this participant to use")
+      uint64 next_storage_base;
+
+      @verbatim (language="comment", text=
+        "A string to notify about exceptional issues that came up while trying to" "\n"
+        "fulfill the request")
+      string error;
+    };
+  };
+};

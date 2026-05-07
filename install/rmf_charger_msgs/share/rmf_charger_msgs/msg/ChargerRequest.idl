@@ -1,0 +1,33 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_charger_msgs/msg/ChargerRequest.msg
+// generated code does not contain a copyright notice
+
+#include "builtin_interfaces/msg/Duration.idl"
+
+module rmf_charger_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "The name of the charger that should process this message")
+    struct ChargerRequest {
+      string charger_name;
+
+      @verbatim (language="comment", text=
+        "The robot that wishes to charge")
+      string fleet_name;
+
+      string robot_name;
+
+      @verbatim (language="comment", text=
+        "The maximum amount of time to wait for the charging to start." "\n"
+        "If the robot takes longer than this to arrive and start charging," "\n"
+        "the charge request will be canceled.")
+      builtin_interfaces::msg::Duration start_timeout;
+
+      @verbatim (language="comment", text=
+        "A unique ID for each request. It is advised that you prefix this" "\n"
+        "with the sender's node name. This is used for error tracking" "\n"
+        "later on")
+      string request_id;
+    };
+  };
+};

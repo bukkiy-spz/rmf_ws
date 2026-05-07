@@ -1,0 +1,14 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_workcell_msgs/msg/Trait.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_workcell_msgs {
+  module msg {
+    struct Trait {
+      string key;
+
+      sequence<string> value;
+    };
+  };
+};

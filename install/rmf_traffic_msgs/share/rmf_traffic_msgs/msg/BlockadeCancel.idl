@@ -1,0 +1,24 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/BlockadeCancel.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_traffic_msgs {
+  module msg {
+    struct BlockadeCancel {
+      @verbatim (language="comment", text=
+        "The participant whose reservation is being canceled")
+      uint64 participant;
+
+      @verbatim (language="comment", text=
+        "True if all reservations for this participants should be considered cancelled")
+      boolean all_reservations;
+
+      @verbatim (language="comment", text=
+        "If all_reservations is false, then this is the last reservation that should" "\n"
+        "be considered cancelled. If all_reservations is true, then this field is" "\n"
+        "meaningless")
+      uint64 reservation;
+    };
+  };
+};

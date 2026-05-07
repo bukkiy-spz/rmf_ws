@@ -1,0 +1,27 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_fleet_msgs/msg/MutexGroupAssignment.msg
+// generated code does not contain a copyright notice
+
+#include "builtin_interfaces/msg/Time.idl"
+
+module rmf_fleet_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "This message maps a mutex group name to the name of an agent that is currently" "\n"
+      "holding the claim to that group.")
+    struct MutexGroupAssignment {
+      @verbatim (language="comment", text=
+        "Name of the mutex group that is being described.")
+      string group;
+
+      @verbatim (language="comment", text=
+        "Traffic Participant ID of the agent that has currently claimed the group." "\n"
+        "If the group is unclaimed, this will be the max uint64 value.")
+      uint64 claimant;
+
+      @verbatim (language="comment", text=
+        "Time stamp of when the claim request began.")
+      builtin_interfaces::msg::Time claim_time;
+    };
+  };
+};

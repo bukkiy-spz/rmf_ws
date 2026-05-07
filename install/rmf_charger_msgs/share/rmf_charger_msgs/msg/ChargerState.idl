@@ -1,0 +1,61 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_charger_msgs/msg/ChargerState.msg
+// generated code does not contain a copyright notice
+
+#include "builtin_interfaces/msg/Duration.idl"
+#include "builtin_interfaces/msg/Time.idl"
+
+module rmf_charger_msgs {
+  module msg {
+    module ChargerState_Constants {
+      @verbatim (language="comment", text=
+        "Charger is not occupied")
+      const uint32 CHARGER_IDLE = 1;
+      @verbatim (language="comment", text=
+        "Charger has been assigned a robot")
+      const uint32 CHARGER_ASSIGNED = 2;
+      @verbatim (language="comment", text=
+        "Charger is charging")
+      const uint32 CHARGER_CHARGING = 3;
+      @verbatim (language="comment", text=
+        "Charger has been disconnected from a robot")
+      const uint32 CHARGER_RELEASED = 4;
+      @verbatim (language="comment", text=
+        "Error state, see error_message for info")
+      const uint32 CHARGER_ERROR = 200;
+    };
+    @verbatim (language="comment", text=
+      "Time when this state message was created")
+    struct ChargerState {
+      builtin_interfaces::msg::Time charger_time;
+
+      @verbatim (language="comment", text=
+        "One of the previously enumerated states")
+      uint32 state;
+
+      @verbatim (language="comment", text=
+        "The charger name should be unique in the RMF system and" "\n"
+        "should match a charger name appearing in the traffic map")
+      string charger_name;
+
+      @verbatim (language="comment", text=
+        "The error_message field should be blank unless state is CHARGER_ERROR")
+      string error_message;
+
+      @verbatim (language="comment", text=
+        "The request_id field will be populated with the ID that started the" "\n"
+        "charging cycle if state is anything other than CHARGER_IDLE")
+      string request_id;
+
+      @verbatim (language="comment", text=
+        "The robot that is currently assigned to this charger (if any)")
+      string robot_fleet;
+
+      string robot_name;
+
+      @verbatim (language="comment", text=
+        "This contains the duration till the robot becomes fully charged.")
+      builtin_interfaces::msg::Duration time_to_fully_charged;
+    };
+  };
+};

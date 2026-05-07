@@ -1,0 +1,29 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/Shape.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_traffic_msgs {
+  module msg {
+    module Shape_Constants {
+      @verbatim (language="comment", text=
+        "A 2D shape reference.")
+      const uint8 NONE = 0;
+      const uint8 BOX = 1;
+      const uint8 CIRCLE = 2;
+    };
+    struct Shape {
+      @verbatim (language="comment", text=
+        "TODO(MXG): Add support for the SimplePolygon class" "\n"
+        "uint8 SIMPLE_POLYGON=3" "\n"
+        "Choose between the BOX and CIRCLE types")
+      uint8 type;
+
+      @verbatim (language="comment", text=
+        "Specify the index of the shape. We support 256 different convex shapes per" "\n"
+        "trajectory. If more shapes are needed than that, then the trajectory must be" "\n"
+        "split into more trajectories.")
+      uint8 index;
+    };
+  };
+};

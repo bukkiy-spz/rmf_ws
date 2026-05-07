@@ -1,0 +1,63 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_task_msgs/msg/TaskSummary.msg
+// generated code does not contain a copyright notice
+
+#include "builtin_interfaces/msg/Time.idl"
+#include "rmf_task_msgs/msg/TaskProfile.idl"
+
+module rmf_task_msgs {
+  module msg {
+    module TaskSummary_Constants {
+      const uint32 STATE_QUEUED = 0;
+      const uint32 STATE_ACTIVE = 1;
+      @verbatim (language="comment", text=
+        "hooray")
+      const uint32 STATE_COMPLETED = 2;
+      @verbatim (language="comment", text=
+        "oh no")
+      const uint32 STATE_FAILED = 3;
+      const uint32 STATE_CANCELED = 4;
+      const uint32 STATE_PENDING = 5;
+    };
+    @verbatim (language="comment", text=
+      "Publish by Fleet Adapter (aka DispatchStatus)")
+    struct TaskSummary {
+      @verbatim (language="comment", text=
+        "Fleet Adapter name")
+      string fleet_name;
+
+      @verbatim (language="comment", text=
+        "*optional and duplicated in TaskProfile")
+      string task_id;
+
+      rmf_task_msgs::msg::TaskProfile task_profile;
+
+      uint32 state;
+
+      @verbatim (language="comment", text=
+        "a brief summary of the current status of the task, for UI's" "\n"
+        "*optional")
+      string status;
+
+      @verbatim (language="comment", text=
+        "submission_time is when the task was submitted to rmf_core" "\n"
+        "*optional and duplicated in TaskProfile")
+      builtin_interfaces::msg::Time submission_time;
+
+      @verbatim (language="comment", text=
+        "when rmf_core actually began processing the task")
+      builtin_interfaces::msg::Time start_time;
+
+      @verbatim (language="comment", text=
+        "When this message is a summary of an in-process task, the end_time field is" "\n"
+        "an estimate. When this message is a summary of a completed or failed task," "\n"
+        "end_time is the actual time.")
+      builtin_interfaces::msg::Time end_time;
+
+      @verbatim (language="comment", text=
+        "Allocated robot name" "\n"
+        "*optional")
+      string robot_name;
+    };
+  };
+};

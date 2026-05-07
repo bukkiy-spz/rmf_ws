@@ -1,0 +1,6 @@
+msg/BoundingBox3D.idl
+msg/BoundingBox3D.msg
+msg/Obstacle.idl
+msg/Obstacle.msg
+msg/Obstacles.idl
+msg/Obstacles.msg

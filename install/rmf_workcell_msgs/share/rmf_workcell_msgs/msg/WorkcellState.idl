@@ -1,0 +1,34 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_workcell_msgs/msg/WorkcellState.msg
+// generated code does not contain a copyright notice
+
+#include "builtin_interfaces/msg/Time.idl"
+
+module rmf_workcell_msgs {
+  module msg {
+    module WorkcellState_Constants {
+      const int32 IDLE = 0;
+      const int32 BUSY = 1;
+      const int32 OFFLINE = 2;
+    };
+    @verbatim (language="comment", text=
+      "This is a template message for all types of workcells to build off from," "\n"
+      "which allows generic workcell libraries to have access to common message" "\n"
+      "fields.")
+    struct WorkcellState {
+      builtin_interfaces::msg::Time time;
+
+      @verbatim (language="comment", text=
+        "A unique ID for this workcell")
+      string guid;
+
+      @verbatim (language="comment", text=
+        "Different basic modes that the workcell could be in")
+      int32 mode;
+
+      @verbatim (language="comment", text=
+        "Queued up requests that are being handled by this workcell")
+      sequence<string> request_guid_queue;
+    };
+  };
+};

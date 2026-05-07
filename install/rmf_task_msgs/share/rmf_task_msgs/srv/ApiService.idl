@@ -1,0 +1,19 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from rmf_task_msgs/srv/ApiService.srv
+// generated code does not contain a copyright notice
+
+
+module rmf_task_msgs {
+  module srv {
+    struct ApiService_Request {
+      @verbatim (language="comment", text=
+        "The JSON message that represents the request")
+      string json_msg;
+    };
+    struct ApiService_Response {
+      @verbatim (language="comment", text=
+        "The JSON message that represents the response")
+      string json_msg;
+    };
+  };
+};

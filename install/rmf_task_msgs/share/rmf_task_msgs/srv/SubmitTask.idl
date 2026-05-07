@@ -1,0 +1,34 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from rmf_task_msgs/srv/SubmitTask.srv
+// generated code does not contain a copyright notice
+
+#include "rmf_task_msgs/msg/TaskDescription.idl"
+
+module rmf_task_msgs {
+  module srv {
+    @verbatim (language="comment", text=
+      "Submit Task | POST service call")
+    struct SubmitTask_Request {
+      @verbatim (language="comment", text=
+        "Identifier for who is requesting the service")
+      string requester;
+
+      @verbatim (language="comment", text=
+        "desciption of task")
+      rmf_task_msgs::msg::TaskDescription description;
+    };
+    struct SubmitTask_Response {
+      @verbatim (language="comment", text=
+        "Confirmation that this service call is processed")
+      boolean success;
+
+      @verbatim (language="comment", text=
+        "generated task ID by dispatcher node")
+      string task_id;
+
+      @verbatim (language="comment", text=
+        "This will provide a verbose message regarding task submission")
+      string message;
+    };
+  };
+};

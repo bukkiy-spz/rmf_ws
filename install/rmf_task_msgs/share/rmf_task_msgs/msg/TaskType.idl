@@ -1,0 +1,20 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_task_msgs/msg/TaskType.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_task_msgs {
+  module msg {
+    module TaskType_Constants {
+      const uint32 TYPE_STATION = 0;
+      const uint32 TYPE_LOOP = 1;
+      const uint32 TYPE_DELIVERY = 2;
+      const uint32 TYPE_CHARGE_BATTERY = 3;
+      const uint32 TYPE_CLEAN = 4;
+      const uint32 TYPE_PATROL = 5;
+    };
+    struct TaskType {
+      uint32 type;
+    };
+  };
+};

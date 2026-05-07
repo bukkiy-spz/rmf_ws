@@ -1,0 +1,15 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_task_msgs/msg/Clean.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_task_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "The name of the waypoint where the robot should begin its pre-configured" "\n"
+      "cleaning job.")
+    struct Clean {
+      string start_waypoint;
+    };
+  };
+};

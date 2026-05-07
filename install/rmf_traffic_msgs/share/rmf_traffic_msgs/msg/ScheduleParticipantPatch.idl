@@ -1,0 +1,25 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/ScheduleParticipantPatch.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_traffic_msgs/msg/ScheduleChangeAdd.idl"
+#include "rmf_traffic_msgs/msg/ScheduleChangeDelay.idl"
+#include "rmf_traffic_msgs/msg/ScheduleChangeProgress.idl"
+
+module rmf_traffic_msgs {
+  module msg {
+    struct ScheduleParticipantPatch {
+      uint64 participant_id;
+
+      uint64 itinerary_version;
+
+      sequence<uint64> erasures;
+
+      sequence<rmf_traffic_msgs::msg::ScheduleChangeDelay> delays;
+
+      rmf_traffic_msgs::msg::ScheduleChangeAdd additions;
+
+      rmf_traffic_msgs::msg::ScheduleChangeProgress progress;
+    };
+  };
+};

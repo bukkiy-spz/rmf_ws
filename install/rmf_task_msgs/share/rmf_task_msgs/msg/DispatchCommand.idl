@@ -1,0 +1,43 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_task_msgs/msg/DispatchCommand.msg
+// generated code does not contain a copyright notice
+
+#include "builtin_interfaces/msg/Time.idl"
+
+module rmf_task_msgs {
+  module msg {
+    module DispatchCommand_Constants {
+      @verbatim (language="comment", text=
+        "to award a task to a fleet")
+      const uint8 TYPE_AWARD = 1;
+      @verbatim (language="comment", text=
+        "to remove a task from a fleet")
+      const uint8 TYPE_REMOVE = 2;
+    };
+    @verbatim (language="comment", text=
+      "This message is published by Task Dispatcher Node to either award or cancel a" "\n"
+      "task for a Fleet Adapter")
+    struct DispatchCommand {
+      @verbatim (language="comment", text=
+        "The selected Fleet Adapter to award/cancel the task")
+      string fleet_name;
+
+      @verbatim (language="comment", text=
+        "The task_id of the task that")
+      string task_id;
+
+      @verbatim (language="comment", text=
+        "Unique ID of this request message")
+      uint64 dispatch_id;
+
+      @verbatim (language="comment", text=
+        "The time that this dispatch request was originally made. Dispatch requests may" "\n"
+        "expire with an error if they get no response after an extended period of time.")
+      builtin_interfaces::msg::Time timestamp;
+
+      @verbatim (language="comment", text=
+        "Add or Cancel a task")
+      uint8 type;
+    };
+  };
+};

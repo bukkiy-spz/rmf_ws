@@ -1,0 +1,26 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_fleet_msgs/msg/ModeRequest.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_fleet_msgs/msg/ModeParameter.idl"
+#include "rmf_fleet_msgs/msg/RobotMode.idl"
+
+module rmf_fleet_msgs {
+  module msg {
+    struct ModeRequest {
+      string fleet_name;
+
+      string robot_name;
+
+      rmf_fleet_msgs::msg::RobotMode mode;
+
+      @verbatim (language="comment", text=
+        "task_id must be copied into future RobotState messages")
+      string task_id;
+
+      @verbatim (language="comment", text=
+        "Some mode changes require parameters. For example, the name of a dock.")
+      sequence<rmf_fleet_msgs::msg::ModeParameter> parameters;
+    };
+  };
+};

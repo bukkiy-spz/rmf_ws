@@ -1,0 +1,12 @@
+msg/DoorMode.idl
+msg/DoorMode.msg
+msg/DoorRequest.idl
+msg/DoorRequest.msg
+msg/DoorSessions.idl
+msg/DoorSessions.msg
+msg/DoorState.idl
+msg/DoorState.msg
+msg/Session.idl
+msg/Session.msg
+msg/SupervisorHeartbeat.idl
+msg/SupervisorHeartbeat.msg

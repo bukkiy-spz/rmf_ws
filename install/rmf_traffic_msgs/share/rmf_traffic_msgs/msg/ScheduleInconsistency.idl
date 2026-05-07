@@ -1,0 +1,19 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/ScheduleInconsistency.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_traffic_msgs/msg/ScheduleInconsistencyRange.idl"
+
+module rmf_traffic_msgs {
+  module msg {
+    struct ScheduleInconsistency {
+      uint64 participant;
+
+      sequence<rmf_traffic_msgs::msg::ScheduleInconsistencyRange> ranges;
+
+      uint64 last_known_itinerary;
+
+      uint64 last_known_progress;
+    };
+  };
+};

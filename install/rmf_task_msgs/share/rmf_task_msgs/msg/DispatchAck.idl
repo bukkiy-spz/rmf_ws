@@ -1,0 +1,24 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_task_msgs/msg/DispatchAck.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_task_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "This message is published by the fleet adapter in response to a" "\n"
+      "DispatchRequest message. It indicates whether the requested task addition or" "\n"
+      "cancellation was successful.")
+    struct DispatchAck {
+      @verbatim (language="comment", text=
+        "The ID of the DispatchRequest that is being responded to")
+      uint64 dispatch_id;
+
+      @verbatim (language="comment", text=
+        "True if the addition or cancellation operation was successful")
+      boolean success;
+
+      sequence<string> errors;
+    };
+  };
+};

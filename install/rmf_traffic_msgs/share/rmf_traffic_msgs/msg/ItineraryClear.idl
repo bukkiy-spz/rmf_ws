@@ -1,0 +1,14 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/ItineraryClear.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_traffic_msgs {
+  module msg {
+    struct ItineraryClear {
+      uint64 participant;
+
+      uint64 itinerary_version;
+    };
+  };
+};

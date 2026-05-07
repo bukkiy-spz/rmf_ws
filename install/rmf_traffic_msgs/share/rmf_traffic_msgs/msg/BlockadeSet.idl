@@ -1,0 +1,27 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/BlockadeSet.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_traffic_msgs/msg/BlockadeCheckpoint.idl"
+
+module rmf_traffic_msgs {
+  module msg {
+    struct BlockadeSet {
+      @verbatim (language="comment", text=
+        "The ID of the participant that is setting its path")
+      uint64 participant;
+
+      @verbatim (language="comment", text=
+        "The ID of the reservation that is being set")
+      uint64 reservation;
+
+      @verbatim (language="comment", text=
+        "The radius to inflate the path")
+      double radius;
+
+      @verbatim (language="comment", text=
+        "The path that is being reserved")
+      sequence<rmf_traffic_msgs::msg::BlockadeCheckpoint> path;
+    };
+  };
+};

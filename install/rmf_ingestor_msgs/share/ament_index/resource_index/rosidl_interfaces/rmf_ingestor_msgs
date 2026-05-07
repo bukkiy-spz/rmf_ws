@@ -1,0 +1,8 @@
+msg/IngestorRequest.idl
+msg/IngestorRequest.msg
+msg/IngestorRequestItem.idl
+msg/IngestorRequestItem.msg
+msg/IngestorResult.idl
+msg/IngestorResult.msg
+msg/IngestorState.idl
+msg/IngestorState.msg

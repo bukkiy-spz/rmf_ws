@@ -1,0 +1,22 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/ScheduleIdentity.msg
+// generated code does not contain a copyright notice
+
+#include "builtin_interfaces/msg/Time.idl"
+
+module rmf_traffic_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "The UUID of the new schedule node" "\n"
+      "TODO(MXG): Consider using uuid_msgs here: https://github.com/ros-geographic-info/unique_identifier/blob/master/uuid_msgs/msg/UniqueID.msg")
+    struct ScheduleIdentity {
+      string node_uuid;
+
+      @verbatim (language="comment", text=
+        "The time that the new schedule node was started. In the event that multiple" "\n"
+        "schedule nodes have been started, the one with the newest timestamp will be" "\n"
+        "considered the active node, and the rest of the nodes will shut down.")
+      builtin_interfaces::msg::Time timestamp;
+    };
+  };
+};

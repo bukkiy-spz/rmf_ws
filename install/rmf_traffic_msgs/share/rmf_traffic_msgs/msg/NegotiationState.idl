@@ -1,0 +1,25 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/NegotiationState.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_traffic_msgs/msg/NegotiationForfeit.idl"
+#include "rmf_traffic_msgs/msg/NegotiationProposal.idl"
+#include "rmf_traffic_msgs/msg/NegotiationRejection.idl"
+#include "rmf_traffic_msgs/msg/NegotiationStatus.idl"
+#include "rmf_traffic_msgs/msg/NegotiationTreeNode.idl"
+
+module rmf_traffic_msgs {
+  module msg {
+    struct NegotiationState {
+      rmf_traffic_msgs::msg::NegotiationStatus status;
+
+      sequence<rmf_traffic_msgs::msg::NegotiationTreeNode> tree;
+
+      sequence<rmf_traffic_msgs::msg::NegotiationProposal> orphan_proposals;
+
+      sequence<rmf_traffic_msgs::msg::NegotiationRejection> orphan_rejections;
+
+      sequence<rmf_traffic_msgs::msg::NegotiationForfeit> orphan_forfeits;
+    };
+  };
+};

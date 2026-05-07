@@ -1,0 +1,28 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_scheduler_msgs/msg/Trigger.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_scheduler_msgs/msg/Payload.idl"
+
+module rmf_scheduler_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "Name to identify the trigger, must be unique across all triggers.")
+    struct Trigger {
+      string name;
+
+      @verbatim (language="comment", text=
+        "unix timestamp in seconds")
+      int64 created_at;
+
+      @verbatim (language="comment", text=
+        "unix timestamp in seconds when the trigger should run")
+      int64 at;
+
+      @default (value="default")
+      string group;
+
+      rmf_scheduler_msgs::msg::Payload payload;
+    };
+  };
+};

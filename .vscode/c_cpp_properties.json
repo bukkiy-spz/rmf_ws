@@ -1,0 +1,34 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/opt/ros/humble/include/**",
+        "/home/masu_ubu/rmf_ws/src/rmf/rmf_battery/rmf_battery/include/**",
+        "/home/masu_ubu/rmf_ws/src/rmf/rmf_ros2/rmf_fleet_adapter/include/**",
+        "/home/masu_ubu/rmf_ws/src/rmf/rmf_ros2/rmf_fleet_adapter_python/include/**",
+        "/home/masu_ubu/rmf_ws/src/rmf/rmf_ros2/rmf_task_ros2/include/**",
+        "/home/masu_ubu/rmf_ws/src/rmf/rmf_ros2/rmf_traffic_ros2/include/**",
+        "/home/masu_ubu/rmf_ws/src/rmf/rmf_ros2/rmf_websocket/include/**",
+        "/home/masu_ubu/rmf_ws/src/rmf/rmf_simulation/rmf_building_sim_common/include/**",
+        "/home/masu_ubu/rmf_ws/src/rmf/rmf_simulation/rmf_robot_sim_common/include/**",
+        "/home/masu_ubu/rmf_ws/src/rmf/rmf_task/rmf_task/include/**",
+        "/home/masu_ubu/rmf_ws/src/rmf/rmf_task/rmf_task_sequence/include/**",
+        "/home/masu_ubu/rmf_ws/src/rmf/rmf_traffic/rmf_traffic/include/**",
+        "/home/masu_ubu/rmf_ws/src/rmf/rmf_traffic_editor/rmf_traffic_editor/include/**",
+        "/home/masu_ubu/rmf_ws/src/rmf/rmf_utils/rmf_utils/include/**",
+        "/home/masu_ubu/rmf_ws/src/rmf/rmf_visualization/rmf_visualization_schedule/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ros2",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++17"
+    }
+  ],
+  "version": 4
+}

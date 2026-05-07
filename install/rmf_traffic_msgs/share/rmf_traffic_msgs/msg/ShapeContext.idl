@@ -1,0 +1,15 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/ShapeContext.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_traffic_msgs/msg/ConvexShapeContext.idl"
+
+module rmf_traffic_msgs {
+  module msg {
+    struct ShapeContext {
+      @verbatim (language="comment", text=
+        "The convex shape descriptions that are available")
+      rmf_traffic_msgs::msg::ConvexShapeContext convex_shapes;
+    };
+  };
+};

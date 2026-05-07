@@ -1,0 +1,26 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/NegotiationRejection.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_traffic_msgs/msg/Itinerary.idl"
+#include "rmf_traffic_msgs/msg/NegotiationKey.idl"
+
+module rmf_traffic_msgs {
+  module msg {
+    struct NegotiationRejection {
+      @verbatim (language="comment", text=
+        "The conflict ID that this rejection is targeted at")
+      uint64 conflict_version;
+
+      @verbatim (language="comment", text=
+        "Reject this negotiation table")
+      sequence<rmf_traffic_msgs::msg::NegotiationKey> table;
+
+      @verbatim (language="comment", text=
+        "The rejection is by this participant")
+      uint64 rejected_by;
+
+      sequence<rmf_traffic_msgs::msg::Itinerary> alternatives;
+    };
+  };
+};

@@ -1,0 +1,20 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_fleet_msgs/msg/ChargingAssignment.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_fleet_msgs {
+  module msg {
+    module ChargingAssignment_Constants {
+      const uint8 MODE_CHARGE = 0;
+      const uint8 MODE_WAIT = 1;
+    };
+    struct ChargingAssignment {
+      string robot_name;
+
+      string waypoint_name;
+
+      uint8 mode;
+    };
+  };
+};

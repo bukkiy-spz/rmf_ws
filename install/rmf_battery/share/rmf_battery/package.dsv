@@ -1,0 +1,13 @@
+source;share/rmf_battery/hook/cmake_prefix_path.ps1
+source;share/rmf_battery/hook/cmake_prefix_path.dsv
+source;share/rmf_battery/hook/cmake_prefix_path.sh
+source;share/rmf_battery/hook/ld_library_path_lib.ps1
+source;share/rmf_battery/hook/ld_library_path_lib.dsv
+source;share/rmf_battery/hook/ld_library_path_lib.sh
+source;share/rmf_battery/hook/pkg_config_path.ps1
+source;share/rmf_battery/hook/pkg_config_path.dsv
+source;share/rmf_battery/hook/pkg_config_path.sh
+source;share/rmf_battery/hook/pkg_config_path_multiarch.ps1
+source;share/rmf_battery/hook/pkg_config_path_multiarch.dsv
+source;share/rmf_battery/hook/pkg_config_path_multiarch.sh
+source;share/rmf_battery/hook/ament_prefix_path.dsv

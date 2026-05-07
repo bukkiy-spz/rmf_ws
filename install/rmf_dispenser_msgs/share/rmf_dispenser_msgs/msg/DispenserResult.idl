@@ -1,0 +1,30 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_dispenser_msgs/msg/DispenserResult.msg
+// generated code does not contain a copyright notice
+
+#include "builtin_interfaces/msg/Time.idl"
+
+module rmf_dispenser_msgs {
+  module msg {
+    module DispenserResult_Constants {
+      const uint8 ACKNOWLEDGED = 0;
+      const uint8 SUCCESS = 1;
+      const uint8 FAILED = 2;
+    };
+    struct DispenserResult {
+      builtin_interfaces::msg::Time time;
+
+      @verbatim (language="comment", text=
+        "A unique ID for the request which this result is for")
+      string request_guid;
+
+      @verbatim (language="comment", text=
+        "The unique ID of the workcell that this result was sent from")
+      string source_guid;
+
+      @verbatim (language="comment", text=
+        "Different basic result statuses")
+      uint8 status;
+    };
+  };
+};

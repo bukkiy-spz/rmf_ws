@@ -1,0 +1,34 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_task_msgs/msg/ApiResponse.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_task_msgs {
+  module msg {
+    module ApiResponse_Constants {
+      @verbatim (language="comment", text=
+        "This response type means the message was not initialized correctly and will" "\n"        "result in an error")
+      const uint8 TYPE_UNINITIALIZED = 0;
+      @verbatim (language="comment", text=
+        "This response type means the request is being acknowledged which will grant it" "\n"        "some extra time before the API Node has its response timeout. This can be used" "\n"        "to extend the lifetime of a request which may take a long time to complete." "\n"        "Each time an acknowledgment is sent the lifetime will be extended.")
+      const uint8 TYPE_ACKNOWLEDGE = 1;
+      @verbatim (language="comment", text=
+        "This response type means this message is responding to the request and" "\n"        "therefore fulfilling the request.")
+      const uint8 TYPE_RESPONDING = 2;
+    };
+    struct ApiResponse {
+      @verbatim (language="comment", text=
+        "The type of response this is: Acknowledging or Responding" "\n"
+        "(Uninitialized will result in the API Node issuing an error response)")
+      uint8 type;
+
+      @verbatim (language="comment", text=
+        "The JSON message that represents the response")
+      string json_msg;
+
+      @verbatim (language="comment", text=
+        "The unique ID of the request that this response is targeted at")
+      string request_id;
+    };
+  };
+};

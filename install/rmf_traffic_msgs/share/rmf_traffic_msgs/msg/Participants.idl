@@ -1,0 +1,20 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/Participants.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_traffic_msgs/msg/Participant.idl"
+#include "rmf_traffic_msgs/msg/ScheduleIdentity.idl"
+
+module rmf_traffic_msgs {
+  module msg {
+    @verbatim (language="comment", text=
+      "The version of the schedule node that provided this update")
+    struct Participants {
+      rmf_traffic_msgs::msg::ScheduleIdentity node_id;
+
+      @verbatim (language="comment", text=
+        "A list of participants with their IDs")
+      sequence<rmf_traffic_msgs::msg::Participant> participants;
+    };
+  };
+};

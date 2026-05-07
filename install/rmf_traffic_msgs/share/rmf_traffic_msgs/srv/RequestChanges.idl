@@ -1,0 +1,38 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from rmf_traffic_msgs/srv/RequestChanges.srv
+// generated code does not contain a copyright notice
+
+#include "rmf_traffic_msgs/msg/ScheduleIdentity.idl"
+
+module rmf_traffic_msgs {
+  module srv {
+    @verbatim (language="comment", text=
+      "Query ID to request a full participants list for")
+    struct RequestChanges_Request {
+      uint64 query_id;
+
+      @verbatim (language="comment", text=
+        "Version to request changes from; ignored if full_update is true")
+      uint64 version;
+
+      @verbatim (language="comment", text=
+        "Request a full update rather than from a specific version")
+      @default (value=FALSE)
+      boolean full_update;
+    };
+    module RequestChanges_Response_Constants {
+      const uint8 REQUEST_ACCEPTED = 1;
+      const uint8 UNKNOWN_QUERY_ID = 2;
+      const uint8 ERROR = 3;
+    };
+    struct RequestChanges_Response {
+      @verbatim (language="comment", text=
+        "Response to the request")
+      rmf_traffic_msgs::msg::ScheduleIdentity node_id;
+
+      uint8 result;
+
+      string error;
+    };
+  };
+};

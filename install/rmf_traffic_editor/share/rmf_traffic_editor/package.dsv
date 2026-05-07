@@ -1,0 +1,14 @@
+source;share/rmf_traffic_editor/hook/cmake_prefix_path.ps1
+source;share/rmf_traffic_editor/hook/cmake_prefix_path.dsv
+source;share/rmf_traffic_editor/hook/cmake_prefix_path.sh
+source;share/rmf_traffic_editor/hook/path.ps1
+source;share/rmf_traffic_editor/hook/path.dsv
+source;share/rmf_traffic_editor/hook/path.sh
+source;share/rmf_traffic_editor/hook/pythonscriptspath.ps1
+source;share/rmf_traffic_editor/hook/pythonscriptspath.dsv
+source;share/rmf_traffic_editor/hook/pythonscriptspath.sh
+source;share/rmf_traffic_editor/local_setup.bash
+source;share/rmf_traffic_editor/local_setup.dsv
+source;share/rmf_traffic_editor/local_setup.ps1
+source;share/rmf_traffic_editor/local_setup.sh
+source;share/rmf_traffic_editor/local_setup.zsh

@@ -1,0 +1,63 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_obstacle_msgs/msg/Obstacle.msg
+// generated code does not contain a copyright notice
+
+#include "builtin_interfaces/msg/Duration.idl"
+#include "rmf_obstacle_msgs/msg/BoundingBox3D.idl"
+#include "std_msgs/msg/Header.idl"
+
+module rmf_obstacle_msgs {
+  module msg {
+    module Obstacle_Constants {
+      @verbatim (language="comment", text=
+        "or modify")
+      const int32 ACTION_ADD = 1;
+      const int32 ACTION_DELETE = 2;
+      const int32 ACTION_DELETEALL = 3;
+    };
+    @verbatim (language="comment", text=
+      "All measurements should be w.r.t. header.frame_id")
+    struct Obstacle {
+      @verbatim (language="comment", text=
+        "Standard header")
+      std_msgs::msg::Header header;
+
+      @verbatim (language="comment", text=
+        "An id for this specific message. This will be used for deletion.")
+      int32 id;
+
+      @verbatim (language="comment", text=
+        "Unique identifier of the publisher of this message.")
+      string source;
+
+      @verbatim (language="comment", text=
+        "The level on which this obstacle exists")
+      string level_name;
+
+      @verbatim (language="comment", text=
+        "A classification label for the detected obstacle. (human, chair, etc)")
+      string classification;
+
+      @verbatim (language="comment", text=
+        "Bounding box of the obstacle")
+      rmf_obstacle_msgs::msg::BoundingBox3D bbox;
+
+      @verbatim (language="comment", text=
+        "3D obstacle data that can be deserialized into an octree." "\n"
+        "Resolution (in m) of the smallest octree node.")
+      double data_resolution;
+
+      @verbatim (language="comment", text=
+        "Binary serialization of the obstacle octree")
+      sequence<int8> data;
+
+      @verbatim (language="comment", text=
+        "The expected lifetime of the obstacle")
+      builtin_interfaces::msg::Duration lifetime;
+
+      @verbatim (language="comment", text=
+        "Whether to add or delete the obstacle of the id provided")
+      int32 action;
+    };
+  };
+};

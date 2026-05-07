@@ -1,0 +1,13 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_traffic_msgs/msg/NegotiationStates.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_traffic_msgs/msg/NegotiationState.idl"
+
+module rmf_traffic_msgs {
+  module msg {
+    struct NegotiationStates {
+      sequence<rmf_traffic_msgs::msg::NegotiationState> negotiations;
+    };
+  };
+};

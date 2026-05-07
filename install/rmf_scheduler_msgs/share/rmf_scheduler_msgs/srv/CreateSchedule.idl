@@ -1,0 +1,27 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from rmf_scheduler_msgs/srv/CreateSchedule.srv
+// generated code does not contain a copyright notice
+
+#include "rmf_scheduler_msgs/msg/Schedule.idl"
+
+module rmf_scheduler_msgs {
+  module srv {
+    @verbatim (language="comment", text=
+      "Registers a new recurring schedule. Existing schedule with the same name will be replaced.")
+    struct CreateSchedule_Request {
+      @verbatim (language="comment", text=
+        "The following fields are ignored:" "\n"
+        "  - created_at")
+      rmf_scheduler_msgs::msg::Schedule schedule;
+    };
+    struct CreateSchedule_Response {
+      @verbatim (language="comment", text=
+        "Confirmation that the schedule is successfully registered")
+      boolean success;
+
+      @verbatim (language="comment", text=
+        "If success is false, this provides a reason for the failure.")
+      string message;
+    };
+  };
+};

@@ -1,0 +1,22 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_building_map_msgs/msg/Place.msg
+// generated code does not contain a copyright notice
+
+
+module rmf_building_map_msgs {
+  module msg {
+    struct Place {
+      string name;
+
+      float x;
+
+      float y;
+
+      float yaw;
+
+      float position_tolerance;
+
+      float yaw_tolerance;
+    };
+  };
+};

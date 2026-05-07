@@ -1,0 +1,15 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_task_msgs/msg/Behavior.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_task_msgs/msg/BehaviorParameter.idl"
+
+module rmf_task_msgs {
+  module msg {
+    struct Behavior {
+      string name;
+
+      sequence<rmf_task_msgs::msg::BehaviorParameter> parameters;
+    };
+  };
+};

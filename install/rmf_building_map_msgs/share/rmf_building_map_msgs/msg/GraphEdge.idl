@@ -1,0 +1,26 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from rmf_building_map_msgs/msg/GraphEdge.msg
+// generated code does not contain a copyright notice
+
+#include "rmf_building_map_msgs/msg/Param.idl"
+
+module rmf_building_map_msgs {
+  module msg {
+    module GraphEdge_Constants {
+      const uint8 EDGE_TYPE_BIDIRECTIONAL = 0;
+      const uint8 EDGE_TYPE_UNIDIRECTIONAL = 1;
+    };
+    struct GraphEdge {
+      uint32 v1_idx;
+
+      uint32 v2_idx;
+
+      sequence<rmf_building_map_msgs::msg::Param> params;
+
+      @verbatim (language="comment", text=
+        "when edge_type is UNIDIRECTIONAL, it means v1 -> v2" "\n"
+        "when edge_type is BIDIRECTIONAL, it means v1 <-> v2")
+      uint8 edge_type;
+    };
+  };
+};
