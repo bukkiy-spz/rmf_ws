@@ -2,6 +2,170 @@
 
 この `rmf_ws` で実際に起きた問題と、原因・確認方法・解決方法をまとめたメモ。
 
+## 実機ロボットと PC を連動させる
+
+### 前提条件
+- TurtleBot4 実機が起動している
+- 実機の IP が `192.168.11.22`（設定ファイルで確認）
+- PC と実機が同じネットワークに接続している
+- PC 側で `robot2_env.bash` により `ROS_DISCOVERY_SERVER=192.168.11.22:11811;` が設定されている
+
+### パターン 1: 実機のみを RViz で表示（推奨・シンプル）
+
+実機のセンサーとロボット位置をリアルタイム表示。Gazebo は起動しません。
+
+```bash
+cd ~/turtlebot4_ws
+source /opt/ros/humble/setup.bash
+colcon build --packages-select tb4_square
+source install/setup.bash
+./scripts/robot2_rviz.sh --robot
+```
+
+または短縮形：
+```bash
+cd ~/turtlebot4_ws
+./scripts/robot2_rviz.sh --robot
+```
+
+`robot2_rviz.sh` は現在、自動判定が既定です。  
+`/robot2/odom` と `/robot2/tf` が見えれば robot モード、見えなければ sim モードへフォールバックします。  
+明示したい場合だけ `--robot` / `--sim` を付けます。
+
+現在の実機向け既定では、`wheel_tf_publisher` と `odom_tf_publisher` の補助 TF は起動しません。  
+実機側の stamp と競合して `TF_OLD_DATA` を起こしやすかったためです。  
+必要な環境だけ次のように明示的に有効化します。
+
+```bash
+./scripts/robot2_rviz.sh --robot enable_wheel_tf_helper:=true
+./scripts/robot2_rviz.sh --robot enable_odom_tf_helper:=true
+```
+
+### パターン 2: Gazebo シミュレーション + 実機データの RViz 表示（高度）
+
+同時に 2 つのロボット環境を見たい場合。ただしネットワーク負荷とログ量が増えます。
+
+別々のターミナルで起動：
+
+**ターミナル 1: Gazebo（シミュレーション）**
+```bash
+cd ~/turtlebot4_ws
+source /opt/ros/humble/setup.bash
+colcon build --packages-select tb4_square
+source install/setup.bash
+unset ROS_DISCOVERY_SERVER
+ros2 daemon stop
+ros2 launch tb4_square turtlebot4_sim.launch.py rviz:=false
+```
+
+**ターミナル 2: RViz（実機表示）**
+```bash
+cd ~/turtlebot4_ws
+source /opt/ros/humble/setup.bash
+source install/setup.bash
+source scripts/robot2_env.bash
+ros2 daemon stop
+ros2 launch tb4_square robot2_rviz.launch.py namespace:=robot2 use_sim_time:=false
+```
+
+この場合、RViz は実機の `/robot2/scan`, `/robot2/tf`, `/robot2/odom` などを表示します。
+
+### パターン 3: Gazebo のシミュレーション環境をカスタマイズして実機と連携
+
+PC 側で複数ロボット / マップを Gazebo で作成した上で、実機データを別窓で表示する高度な構成。
+
+この場合は `namespace` と `ROS_DOMAIN_ID` を工夫して、トピック名の衝突を避ける必要があります。
+
+### 実機接続の確認
+
+```bash
+source /opt/ros/humble/setup.bash
+source ~/turtlebot4_ws/install/setup.bash
+source ~/turtlebot4_ws/scripts/robot2_env.bash
+
+# トピック表示（実機が起動していれば /robot2/* が見える）
+ros2 topic list | rg '/robot2'
+
+# 現在時刻と scan の stamp を比較
+date +%s
+ros2 topic echo /robot2/scan --once | sed -n '1,8p'
+
+# スキャン確認
+ros2 topic echo /robot2/scan --once | sed -n '1,20p'
+
+# ノード確認
+ros2 node list | rg '/robot2'
+```
+
+もし何も見えない場合は、実機側のノードが起動していないか、ネットワーク接続を確認してください。
+`/robot2/scan` の `header.stamp.sec` が `date +%s` と大きくずれている場合は、実機時計が古いままです。
+
+### `robot2_square.sh` が `create3_repub did not appear` で止まる
+
+症状:
+
+```text
+[ERROR] /robot2/cmd_vel is visible, but subscriber 'create3_repub' did not appear.
+```
+
+原因:
+
+- 実機 bringup によっては `/robot2/cmd_vel` の subscriber が PC 側 graph へ出ない
+- その一方で `/robot2/drive_distance` と `/robot2/rotate_angle` action は使える
+- PC 側の `ros2 action list` は空でも、ノード内 ActionClient では接続できることがある
+
+現在の `./scripts/robot2_square.sh` は、`/robot2/cmd_vel` が見えている限り
+subscriber が 0 でもそのまま `cmd_vel` を流す。  
+そのため `create3_repub` が見えないだけなら、スクリプトはそのまま続行してよい。  
+このときは `best_effort` ではなく `reliable` を優先する。  
+隠れている subscriber が `reliable` の場合、`best_effort` publisher では受け取れないことがあるため。  
+`/robot2/cmd_vel` 自体が見えない場合だけ action モードを試す。
+
+確認コマンド:
+
+```bash
+cd ~/turtlebot4_ws
+./scripts/robot2_status.sh
+ros2 action list | grep -E '/robot2/(drive_distance|rotate_angle)'
+```
+
+手動で明示したいとき:
+
+```bash
+cd ~/turtlebot4_ws
+ros2 launch tb4_square square_driver.launch.py \
+  control_mode:=action \
+  cmd_vel_topic:=/robot2/cmd_vel \
+  drive_distance_action_name:=/robot2/drive_distance \
+  rotate_angle_action_name:=/robot2/rotate_angle
+```
+
+### 別ターミナルでは動かなかったが `source install/setup.bash` 後に動く
+
+症状:
+
+- RViz を起動したターミナルでは動く
+- 別ターミナルで `./scripts/robot2_square.sh` をそのまま実行すると期待どおり動かない
+- `source /opt/ros/humble/setup.bash`
+- `source install/setup.bash`
+- のあとだと動く
+
+原因:
+
+- shell の環境変数はターミナルごとに独立している
+- あるターミナルで `source` しても、別ターミナルには引き継がれない
+- `install/setup.bash` を読んでいないターミナルでは、修正済みの `tb4_square` ではなく古い環境を見に行くことがある
+
+現在の対応:
+
+- `./scripts/robot2_square.sh` は内部で
+  `source /opt/ros/humble/setup.bash` と `source ~/turtlebot4_ws/install/setup.bash` を行う
+- そのため、新しいターミナルでは `cd ~/turtlebot4_ws && ./scripts/robot2_square.sh` だけでよい
+
+補足:
+
+- `ros2 launch ...` や `ros2 run ...` を手打ちするときは、引き続きそのターミナルで `source` が必要
+
 ## 最初に確認すること
 
 ### RMFデモを動かす前
@@ -9,6 +173,52 @@
 unset ROS_DISCOVERY_SERVER
 source ~/rmf_ws/install/setup.bash
 ```
+
+### TurtleBot4 実機の時刻を確認・同期する
+```bash
+timedatectl status
+sudo timedatectl set-ntp true
+sudo timedatectl set-timezone Asia/Tokyo
+```
+
+NTP が使えない場合は、一時的に手動で合わせる。
+
+```bash
+sudo date -s '2026-05-08 23:10:00'
+sudo hwclock --systohc
+```
+
+PC と実機で `date +%s` の差が大きい場合は、epoch 秒を直接合わせる方が確実。
+
+```bash
+# PC 側で現在 epoch 秒を確認
+date +%s
+
+# 実機側で PC 側の値をそのまま設定（例）
+sudo date -s '@1778221746'
+date +%s
+timedatectl status
+```
+
+`RTC time: n/a` の機体では `hwclock --systohc` が失敗しても問題ない。
+
+AMCL が `Message Filter dropping message` を出して `map -> odom` が立たないときは、
+まず実機側の `date` と PC 側の `date` が大きくずれていないか確認する。
+
+実機の `date` を直したあとも、すでに起動中の sensor node が古い stamp を出し続けることがあります。  
+特に `/robot2/scan` の `header.stamp.sec` が古いままなら、次を順に試します。
+
+```bash
+# 実機側
+turtlebot4-source
+date +%s
+ros2 topic echo /robot2/scan --once | sed -n '1,8p'
+turtlebot4-daemon-restart
+ros2 topic echo /robot2/scan --once | sed -n '1,8p'
+```
+
+それでも `scan` の stamp が古いままなら、時刻を合わせたあとで `sudo reboot` する。  
+再起動後にもう一度 `date +%s` と `/robot2/scan` の stamp を見比べる。
 
 ### rmf-web を動かす前
 ```bash
@@ -103,6 +313,248 @@ ros2 daemon start
 ### 補足
 
 - 新しいターミナルを開くたびに再発する場合は、`.bashrc` や TurtleBot4 関連の setup が `ROS_DISCOVERY_SERVER` を再設定している可能性がある
+
+## `localization.launch.py` で `amcl` が active にならない
+
+### 症状
+```text
+Failed to change state for node: amcl
+Failed to bring up all requested nodes. Aborting bringup.
+```
+
+### 原因
+
+- 以前の `localization.launch.py` や `nav2` がまだ残っていて、`/robot2/map_server` や `/robot2/amcl` と同名ノードが重複していた
+- `ros2 node list` で exact name の重複警告が出ると、lifecycle manager が別インスタンスに当たって起動に失敗することがある
+
+### 確認
+```bash
+ros2 node list | sort | uniq -c | sort -nr | head -n 20
+ps -ef | rg 'localization.launch.py|robot2_nav2_compat.launch.py|nav2|amcl|map_server'
+```
+
+### 解決
+```bash
+ros2 daemon stop
+pkill -f 'localization.launch.py' || true
+pkill -f 'robot2_nav2_compat.launch.py' || true
+pkill -f 'nav2' || true
+ros2 daemon start
+```
+
+その後、`localization.launch.py` を 1 回だけ起動して `robot2.amcl` が active になってから、Nav2 を起動する。
+
+### 補足
+
+- `initialpose` は `amcl` が active になる前に送っても効かない
+- `map -> odom` が出るまでは、Nav2 側の `tf2_echo` は失敗する
+
+## `/robot2/map` が出ない / TF が見えない場合
+
+### 症状
+```text
+Unknown topic '/robot2/map'
+WARNING: topic [/robot2/map] does not appear to be published yet
+StaticLayer: "map" passed to lookupTransform argument target_frame does not exist.
+```
+
+### 短い切り分け手順
+1. トピックとノードを確認する（PC 側、`turtlebot4_ws` 環境で実行）
+```bash
+ros2 topic list | rg '/robot2' || true
+ros2 topic echo /robot2/map --once
+ros2 topic info /robot2/map -v || true
+ros2 node list | sort | uniq -c | sort -nr | head -n 40
+ros2 node info /robot2/amcl || true
+ros2 node info /robot2/map_server || true
+ros2 lifecycle get /robot2/amcl || true
+ros2 topic echo /robot2/amcl_pose --once || true
+```
+
+2. TF を確認する（map->odom が出ているか）
+```bash
+# tf2_echo は既定で /tf, /tf_static を購読するため、robot2 名前空間では remap が必要
+ros2 run tf2_ros tf2_echo map odom --ros-args -r /tf:=/robot2/tf -r /tf_static:=/robot2/tf_static
+```
+
+3. 見つからない場合のクリーン再起動
+```bash
+ros2 daemon stop
+pkill -f 'localization.launch.py' || true
+pkill -f 'robot2_nav2_compat.launch.py' || true
+pkill -f 'nav2' || true
+ros2 daemon start
+```
+
+4. ローカライゼーションを先に起動して `amcl` を `activate` する
+```bash
+source scripts/robot2_env.bash
+ros2 launch turtlebot4_navigation localization.launch.py namespace:=robot2 use_sim_time:=false map:=/opt/ros/humble/share/turtlebot4_navigation/maps/depot.yaml
+# 別ターミナルで
+ros2 lifecycle set /robot2/amcl configure
+ros2 lifecycle set /robot2/amcl activate
+
+# 初期姿勢は topic pub より service call の方が入力ミスを防ぎやすい
+ros2 service call /robot2/set_initial_pose nav2_msgs/srv/SetInitialPose \
+"{pose: {header: {frame_id: map}, pose: {pose: {position: {x: 0.0, y: 0.0, z: 0.0}, orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}}, covariance: [0.25, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.25, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.06853891945200942]}}}}"
+```
+
+5. `/robot2/map` と map->odom TF が出たら Nav2 を起動する。
+
+### 補足
+- 時刻ずれが原因で scan の timestamp が古くなり TF キャッシュと合わないことが非常に多い（ロボット側の `date` を確認）。
+- 名前空間の remap ミスやトピック名の差分がないか launch ファイルを再確認すること。
+- `amcl` が active でも `/robot2/scan` の Publisher count が 0 だと自己位置更新できず、`map -> odom` は出ない。
+- `ros2 topic info /robot2/tf_static -v` で Publisher count が 0 の場合、`base_link -> lidar_frame` 等の静的TFが欠けており AMCL が成立しない。
+- 目安コマンド:
+  - `ros2 topic info /robot2/scan -v`
+  - `ros2 topic info /robot2/tf_static -v`
+
+## RViz でロボットが表示されない / `Frame [odom] does not exist` になる
+
+### 症状
+- RViz は起動しているが、ロボットモデルが映らない（グリッドだけ）
+- または `No tf data. Actual error: Frame [odom] does not exist`
+
+### 原因の切り分け
+
+`robot2_rviz.sh` はビジュアライザーのみで、ロボット実体のシミュレーション環境は含まれていません。起動ログで以下が出ている場合、ロボットデータが流れていません：
+
+```text
+[WARN] No JointState received yet; publishing fallback wheel TFs with zero angles.
+[WARN] No odometry received yet; publishing identity odom TF for RViz stability.
+```
+
+現在の `robot2_rviz.launch.py` では、上の補助ノードは既定で起動しません。  
+ログにこれらが出るのは、`enable_wheel_tf_helper:=true` や `enable_odom_tf_helper:=true` を明示した場合だけです。
+
+### 解決方法
+
+#### 1. シミュレーション + RViz を完全に起動（推奨）
+```bash
+cd ~/turtlebot4_ws
+source /opt/ros/humble/setup.bash
+colcon build --packages-select tb4_square
+source install/setup.bash
+unset ROS_DISCOVERY_SERVER
+ros2 daemon stop
+ros2 launch tb4_square turtlebot4_sim.launch.py rviz:=true
+```
+
+このコマンド 1 つで Gazebo シミュレーション + ロボットスポーン + RViz が起動します。
+
+#### 2. シミュレーション環境が別で起動している場合
+別ターミナルで RViz のみ起動：
+```bash
+cd ~/turtlebot4_ws
+unset ROS_DISCOVERY_SERVER
+./scripts/robot2_rviz.sh
+```
+
+このときは必ず Gazebo 側で `/robot2/odom` と `/robot2/joint_states` が流れていることを確認してください：
+```bash
+ros2 topic list | rg '/robot2/(odom|joint_states|tf)'
+```
+
+#### 3. ロボット実機を表示する場合
+```bash
+cd ~/turtlebot4_ws
+./scripts/robot2_rviz.sh --robot
+```
+
+### 確認コマンド
+```bash
+cd ~/turtlebot4_ws
+source /opt/ros/humble/setup.bash
+source install/setup.bash
+
+# ロボットデータの確認
+ros2 topic list | rg '/robot2/(tf|odom|joint_states|scan|robot_description)'
+date +%s
+ros2 topic echo /robot2/odom --once
+ros2 topic echo /robot2/joint_states --once
+ros2 topic echo /robot2/scan --once | sed -n '1,8p'
+```
+
+### 補足
+- `./scripts/robot2_rviz.sh` はまず実機 topic を探し、見つからないときだけ sim モードへ切り替えます。
+- 常に実機を使いたいときは `./scripts/robot2_rviz.sh --robot` と明示できます。
+- 常にシミュレーション側だけを見たいときは `./scripts/robot2_rviz.sh --sim` を使います。
+- 現在の RViz 既定 `Fixed Frame` は `base_link`。実機時計がずれていて `scan` の stamp が古いとき、`odom` 固定より表示が崩れにくいためです。
+
+## RViz で LaserScan が出ない / `rplidar_link` の Message Filter dropping が続く
+
+### 症状
+- RViz の RobotModel や TF は見えるが LaserScan だけ出ない
+- `Message Filter dropping message: frame 'rplidar_link' ...`
+- `the timestamp on the message is earlier than all the data in the transform cache`
+- または `discarding message because the queue is full`
+
+### 原因
+- 実機の `/robot2/scan` の `header.stamp` が現在時刻より大きく古い
+- 実機時計がずれているか、時計修正前から動いている LiDAR node が古い stamp を出し続けている
+- 補助 TF を混ぜると stamp 競合が悪化しやすい
+
+### 確認方法
+
+PC側:
+
+```bash
+cd ~/turtlebot4_ws
+source scripts/robot2_env.bash
+date +%s
+ros2 topic echo /robot2/scan --once | sed -n '1,8p'
+```
+
+実機側:
+
+```bash
+turtlebot4-source
+date +%s
+ros2 topic echo /robot2/scan --once | sed -n '1,8p'
+```
+
+`date +%s` と `header.stamp.sec` が大きくずれていたら、LaserScan の timestamp が古い。
+
+### 対応
+
+1. 実機時計を合わせる。
+
+```bash
+sudo timedatectl set-ntp true
+sudo timedatectl set-timezone Asia/Tokyo
+date +%s
+```
+
+2. NTP で合わない場合は PC 側の epoch 秒を実機へ直接入れる。
+
+```bash
+# PC側
+date +%s
+
+# 実機側
+sudo date -s '@1778232650'
+date +%s
+```
+
+3. 時刻修正後、実機側の sensor node を更新する。
+
+```bash
+turtlebot4-daemon-restart
+ros2 topic echo /robot2/scan --once | sed -n '1,8p'
+```
+
+4. それでも `scan` の stamp が古いままなら、時刻を直したあとで実機を再起動する。
+
+```bash
+sudo reboot
+```
+
+5. PC 側では `./scripts/robot2_rviz.sh --robot` から起動し、`enable_wheel_tf_helper` と `enable_odom_tf_helper` は必要なときだけ使う。
+
+### 補足
+- `inotify_add_watch(... No space left on device)` は今回の LaserScan 非表示の主因ではない。
+- 根本的には実機時計を直すのが本命。`Fixed Frame: base_link` は表示を安定させるための回避策。
 
 ## `dispatch_clean -cs clean_lobby` なのにうまく動かない
 
