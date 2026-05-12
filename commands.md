@@ -128,7 +128,7 @@ git commit -m "Ignore generated files"
 cd ~/rmf_ws
 git status
 git add commands.md troubleshooting.md
-git commit -m "変更内容を書く"
+git commit -m "トラブルシューティング更新"
 git push -u origin main
 ```
 

@@ -6,9 +6,12 @@
 
 ### 前提条件
 - TurtleBot4 実機が起動している
-- 実機の IP が `192.168.11.22`（設定ファイルで確認）
+- 実機の Wi-Fi 側 IP が `192.168.11.22`
+- 実機の USB 側 IP が `192.168.186.3`
+- Create 3 の USB 側 IP が `192.168.186.2`
+- PC の IP が `192.168.11.1`
 - PC と実機が同じネットワークに接続している
-- PC 側で `robot2_env.bash` により `ROS_DISCOVERY_SERVER=192.168.11.22:11811;` が設定されている
+- `source ~/turtlebot4_ws/scripts/robot2_env.bash` 後に `echo $ROS_DISCOVERY_SERVER` で現在の Discovery Server 設定を確認できる
 
 ### パターン 1: 実機のみを RViz で表示（推奨・シンプル）
 
@@ -797,3 +800,227 @@ echo $RMW_IMPLEMENTATION
 - rmf-web 系のターミナルでは、まず `deactivate 2>/dev/null || true`
 - `rmf-web main` と `rmf-web-0.0.1` を混ぜない
 - `rmf-web-0.0.1` は Humble 用として使う
+
+# PCからcreate3のWebUIを開く方法
+ssh -L 8186:192.168.186.2:80 ubuntu@192.168.11.22
+http://localhost:8186
+
+# 手動時刻設定
+sudo timedatectl set-ntp false
+sudo timedatectl set-time '2026-05-12 18:22:00'
+sudo systemctl restart chrony
+sudo chronyc makestep
+chronyc tracking
+date
+
+## 2026-05-12 実機 Nav2 立ち上げの確定手順
+
+今回最終的に安定したのは、次の構成です。
+
+- PC: `192.168.11.1`
+- `turtlebot4-2` Wi-Fi: `192.168.11.22`
+- `turtlebot4-2` USB: `192.168.186.3`
+- Create 3: `192.168.186.2`
+- `localization` と `Nav2` は PC 側ではなく `turtlebot4-2` 側で起動する
+
+### 1. 時刻同期の正しい流れ
+
+時刻は次の順で流す。
+
+```text
+PC(192.168.11.1) -> turtlebot4-2(192.168.11.22)
+turtlebot4-2(192.168.186.3) -> Create3(192.168.186.2)
+```
+
+PC 側 `chrony.conf` は、他ロボットへ配りたくないなら単体許可でよい。
+
+```conf
+allow 192.168.11.22
+local stratum 8
+```
+
+反映:
+
+```bash
+sudo systemctl restart chrony
+chronyc tracking
+date
+```
+
+`turtlebot4-2` 側 `chrony.conf` の最小例:
+
+```conf
+server 192.168.11.1 iburst prefer minpoll 4 maxpoll 6
+allow 192.168.186.2
+local stratum 10
+makestep 1.0 3
+```
+
+反映:
+
+```bash
+sudo systemctl disable --now systemd-timesyncd
+sudo systemctl enable --now chrony
+sudo systemctl restart chrony
+chronyc sources -v
+chronyc tracking
+date
+```
+
+`chronyd` が落ちていると次のように出る。
+
+```text
+506 Cannot talk to daemon
+```
+
+その場合は、まず `chrony` を起動してから確認し直す。
+
+### 2. Create 3 の NTP 設定
+
+PC から Web UI を開く:
+
+```bash
+ssh -L 8186:192.168.186.2:80 ubuntu@192.168.11.22
+```
+
+ブラウザ:
+
+```text
+http://localhost:8186
+```
+
+`Edit ntp.conf` に次が入っていればよい。
+
+```conf
+server 192.168.186.3 prefer iburst minpoll 4 maxpoll 6
+```
+
+そのあと:
+
+1. `Restart ntpd`
+2. 必要なら `Set Date and Time`
+3. 必要なら Create 3 本体を再起動
+
+確認:
+
+```bash
+curl -I http://192.168.186.2
+```
+
+`Date:` が現在時刻付近なら成功。
+
+### 3. 時刻同期後は ROS ノードを再起動する
+
+時刻を直しても、すでに動いているノードは古い stamp を出し続けることがある。  
+特に `scan` や `tf` が古いままだと `TF_OLD_DATA` と `Message Filter dropping message` が出続ける。
+
+実機側:
+
+```bash
+turtlebot4-source
+turtlebot4-daemon-restart
+sleep 10
+timeout 5 ros2 topic echo /robot2/scan --once
+timeout 5 ros2 topic echo /robot2/tf --once
+timeout 5 ros2 topic echo /robot2/odom --once
+```
+
+`header.stamp.sec` が `date +%s` 付近まで来ていることを確認する。
+
+### 4. Localization は実機側で起動する
+
+PC 側で互換 launch を無理に通すより、`turtlebot4-2` 側で標準 `localization.launch.py` を起動した方が安定した。
+
+実機側:
+
+```bash
+source /opt/ros/humble/setup.bash
+turtlebot4-source
+ros2 daemon stop
+ros2 daemon start
+ros2 launch turtlebot4_navigation localization.launch.py \
+  namespace:=robot2 \
+  use_sim_time:=false \
+  map:=/opt/ros/humble/share/turtlebot4_navigation/maps/depot.yaml
+```
+
+### 5. Initial Pose は必要なら実機側から直接入れる
+
+`amcl` が active でも、PC 側からの `initialpose` がうまく届かないことがあった。  
+その場合は実機側ターミナルから入れる方が確実。
+
+確認:
+
+```bash
+ros2 lifecycle get /robot2/amcl
+ros2 topic info -v /robot2/initialpose
+```
+
+`amcl` が `active [3]` で、`/robot2/initialpose` の subscriber が 1 つ見えていれば宛先は合っている。
+
+投入:
+
+```bash
+ros2 topic pub -1 --qos-reliability best_effort /robot2/initialpose geometry_msgs/msg/PoseWithCovarianceStamped \
+"{header: {frame_id: map}, pose: {pose: {position: {x: 0.0, y: -0.1, z: 0.0}, orientation: {w: 1.0}}, covariance: [0.25, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.25, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.068]}}"
+```
+
+確認:
+
+```bash
+timeout 5 ros2 topic echo /robot2/amcl_pose --once
+timeout 5 ros2 run tf2_ros tf2_echo map odom --ros-args -r /tf:=/robot2/tf -r /tf_static:=/robot2/tf_static
+```
+
+成功時は `amcl_pose` が出て、`map -> odom` も見える。
+
+### 6. Nav2 も実機側で起動する
+
+Localization が通ったあと、`turtlebot4-2` 側で `Nav2` を立てる。
+
+```bash
+source /opt/ros/humble/setup.bash
+turtlebot4-source
+ros2 launch turtlebot4_navigation nav2.launch.py \
+  namespace:=robot2 \
+  use_sim_time:=false
+```
+
+PC 側で確認:
+
+```bash
+cd ~/turtlebot4_ws
+source /opt/ros/humble/setup.bash
+source scripts/robot2_env.bash
+source install/setup.bash
+ros2 action list | grep navigate_to_pose
+ros2 node list | grep -E '/robot2/(controller_server|planner_server|bt_navigator|waypoint_follower|velocity_smoother|behavior_server|smoother_server)'
+```
+
+`/robot2/navigate_to_pose` が見えれば成功。
+
+### 7. 今回の実害が大きかった失敗パターン
+
+- `TF_OLD_DATA ignoring data from the past`
+  `scan` / `tf` / `odom` の stamp が古い
+- `Message Filter dropping message: frame 'rplidar_link' ... earlier than all the data in the transform cache`
+  `scan` が古い
+- `AMCL cannot publish a pose or update the transform. Please set the initial pose...`
+  `initialpose` が未投入、または届いていない
+- `Invalid frame ID "map" passed to canTransform`
+  `map -> odom` がまだ立っていない
+- `506 Cannot talk to daemon`
+  `chronyd` が動いていない
+
+### 8. 次回の最短チェックリスト
+
+1. PC 側 `date` と `chronyc tracking`
+2. `turtlebot4-2` 側 `date` と `chronyc tracking`
+3. `curl -I http://192.168.186.2` の `Date`
+4. 実機側で `turtlebot4-daemon-restart`
+5. `/robot2/scan`, `/robot2/tf`, `/robot2/odom` の stamp 確認
+6. 実機側で `localization.launch.py`
+7. 実機側で `initialpose`
+8. `amcl_pose` と `map -> odom`
+9. 実機側で `nav2.launch.py`
+10. PC 側で `/robot2/navigate_to_pose` 確認
