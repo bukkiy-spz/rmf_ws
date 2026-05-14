@@ -128,7 +128,7 @@ git commit -m "Ignore generated files"
 cd ~/rmf_ws
 git status
 git add commands.md troubleshooting.md
-git commit -m "トラブルシューティング更新"
+git commit -m "トラブルシューティング更新（Nav2立ち上げまで）"
 git push -u origin main
 ```
 

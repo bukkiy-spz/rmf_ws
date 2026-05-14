@@ -834,6 +834,11 @@ turtlebot4-2(192.168.186.3) -> Create3(192.168.186.2)
 
 PC 側 `chrony.conf` は、他ロボットへ配りたくないなら単体許可でよい。
 
+設定確認
+```bash
+sudoedit /etc/chrony/chrony.conf
+```
+
 ```conf
 allow 192.168.11.22
 local stratum 8
